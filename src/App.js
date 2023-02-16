@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import Todo from "./component/Todo";
+import "./App.css";
 
+import styled from "styled-components";
 function App() {
   const isMount = useRef(true);
   const [id, setId] = useState(0);
@@ -71,30 +73,93 @@ function App() {
   }, [todos, id]);
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-        />
-      </form>
+    <Div>
+      <Container>
+        <Navbar>
+          <p>로고</p>
+          <p>Tasks</p>
+          <p>Ideas</p>
+          <p>Features</p>
+          <p>로고</p>
+          <p>로고</p>
+          <p>로고</p>
+        </Navbar>
 
-      <div>
-        {todos.map((todo) => {
-          return (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              onDeleteTodo={onDeleteTodo}
-              onToggleTodo={onToggleTodo}
-              onEditTodo={onEditTodo}
-            />
-          );
-        })}
-      </div>
-    </div>
+        <Section>
+          <Todolist>
+            <form onSubmit={onSubmit}>
+              <input
+                type="text"
+                value={newTodo}
+                onChange={(e) => setNewTodo(e.target.value)}
+              />
+            </form>
+
+            <div>
+              {todos.map((todo) => {
+                return (
+                  <Todo
+                    key={todo.id}
+                    todo={todo}
+                    onDeleteTodo={onDeleteTodo}
+                    onToggleTodo={onToggleTodo}
+                    onEditTodo={onEditTodo}
+                  />
+                );
+              })}
+            </div>
+          </Todolist>
+
+          <Temp></Temp>
+        </Section>
+      </Container>
+    </Div>
   );
 }
 
 export default App;
+
+const Div = styled.div`
+  background-color: #eff1fe;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Container = styled.div`
+  width: 90%;
+  height: 90%;
+
+  background: #ffffff;
+  border: 2.5px solid #476ef7;
+  border-radius: 50px;
+`;
+
+const Navbar = styled.div`
+  display: flex;
+  border: 1px solid gray;
+
+  margin: 30px 50px;
+`;
+
+const Section = styled.div`
+  display: flex;
+  padding: 50px;
+`;
+
+const Todolist = styled.div`
+  border: 1px solid gray;
+  width: 100%;
+  //margin: 30px 50px;
+`;
+
+const Temp = styled.div`
+  border: 1px solid blue;
+  width: 100%;
+  height: auto;
+  //margin: 30px 50px;
+  background: rgba(217, 217, 217, 0.2);
+`;
