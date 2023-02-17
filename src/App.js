@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import Todo from "./component/Todo";
+import Navbar from "./component/Navbar";
 import "./App.css";
 
 import styled from "styled-components";
+
+import blue from "./assets/blue.mp4";
+
 function App() {
   const isMount = useRef(true);
   const [id, setId] = useState(0);
@@ -75,15 +79,7 @@ function App() {
   return (
     <Div>
       <Container>
-        <Navbar>
-          <p>로고</p>
-          <p>Tasks</p>
-          <p>Ideas</p>
-          <p>Features</p>
-          <p>로고</p>
-          <p>로고</p>
-          <p>로고</p>
-        </Navbar>
+        <Navbar />
 
         <Section>
           <Todolist>
@@ -110,7 +106,13 @@ function App() {
             </div>
           </Todolist>
 
-          <Temp></Temp>
+          <Temp>
+            <p>영상</p>
+
+            <Video muted autoPlay loop>
+              <source src={blue} type="video/mp4" />
+            </Video>
+          </Temp>
         </Section>
       </Container>
     </Div>
@@ -138,13 +140,6 @@ const Container = styled.div`
   border-radius: 50px;
 `;
 
-const Navbar = styled.div`
-  display: flex;
-  border: 1px solid gray;
-
-  margin: 30px 50px;
-`;
-
 const Section = styled.div`
   display: flex;
   padding: 50px;
@@ -162,4 +157,11 @@ const Temp = styled.div`
   height: auto;
   //margin: 30px 50px;
   background: rgba(217, 217, 217, 0.2);
+`;
+
+const Video = styled.video`
+  width: 582px;
+  height: 713px;
+  border-radius: 18px;
+  object-fit: cover;
 `;
