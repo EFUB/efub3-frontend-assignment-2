@@ -8,17 +8,18 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <TodoDiv active={done}>
-      <Delete onClick={() => onDeleteTodo(id)}>삭제</Delete>
+    //onClick={() => onToggleTodo(id)}
+    <TodoDiv>
+      {done && <Done />}
 
       {isOpen ? (
         <EditInput onEditTodo={onEditTodo} todo={todo} setIsOpen={setIsOpen} />
       ) : (
-        <div>
-          <p onClick={() => onToggleTodo(id)}>완료</p>
-          <p onClick={() => setIsOpen(true)}> {text}</p>
-        </div>
+        <TodoText onClick={() => setIsOpen(true)}> {text}</TodoText>
       )}
+
+      <Delete onClick={() => onDeleteTodo(id)}>삭제</Delete>
+      <Delete onClick={() => onEditTodo(id)}>수정</Delete>
     </TodoDiv>
   );
 };
@@ -26,13 +27,38 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
 export default Todo;
 
 const TodoDiv = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 50px;
+  background: #f8f9fe;
+  border-radius: 10px;
+
   display: flex;
-  width: 400px;
-  border: 1px solid red;
+
   justify-content: space-between;
-  color: ${(props) => (props.active ? "red" : "blue")};
+`;
+
+const TodoText = styled.p`
+  font-family: "Cafe24SsurroundAir";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+`;
+
+const Done = styled.div`
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  left: 0px;
+  top: 0px;
+  background: #e05a87;
+  border-radius: 10px 0px 0px 10px;
 `;
 
 const Delete = styled.div`
   color: red;
+  z-index: 100;
 `;

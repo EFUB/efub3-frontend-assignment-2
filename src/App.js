@@ -25,6 +25,7 @@ function App() {
 
   // 삭제
   const onDeleteTodo = (id) => {
+    console.log("삭제");
     let newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
@@ -40,6 +41,7 @@ function App() {
 
   // 수정
   const onEditTodo = (id, newText) => {
+    console.log("수정");
     let newTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, text: newText } : todo
     );
@@ -81,6 +83,13 @@ function App() {
       <Container>
         <Navbar />
 
+        <Ment>
+          <div></div>
+          <p>Have A Nice Day</p>
+        </Ment>
+
+        <Title>Manage Your Tasks Easily</Title>
+
         <Section>
           <Todolist>
             <form onSubmit={onSubmit}>
@@ -121,6 +130,36 @@ function App() {
 
 export default App;
 
+const Title = styled.p`
+  margin-left: 60px;
+
+  font-family: "Cafe24 Ssurround";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  color: #000000;
+`;
+const Ment = styled.div`
+  display: flex;
+  margin-left: 60px;
+
+  div {
+    width: 34px;
+    height: 14px;
+    background: #facc2a;
+    border-radius: 7.5px;
+  }
+
+  p {
+    margin: 0;
+    font-family: "Cafe24 Ssurround";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #476ef7;
+  }
+`;
 const Div = styled.div`
   background-color: #eff1fe;
   width: 100%;
