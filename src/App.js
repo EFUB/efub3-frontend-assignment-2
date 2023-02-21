@@ -6,6 +6,7 @@ import "./App.css";
 import styled from "styled-components";
 
 import blue from "./assets/blue.mp4";
+import plus from "./assets/plus.svg";
 
 function App() {
   const isMount = useRef(true);
@@ -83,22 +84,14 @@ function App() {
       <Container>
         <Navbar />
 
-        <Ment>
-          <div></div>
-          <p>Have A Nice Day</p>
-        </Ment>
-
-        <Title>Manage Your Tasks Easily</Title>
-
         <Section>
-          <Todolist>
-            <form onSubmit={onSubmit}>
-              <input
-                type="text"
-                value={newTodo}
-                onChange={(e) => setNewTodo(e.target.value)}
-              />
-            </form>
+          <TodoBox>
+            <Ment>
+              <div></div>
+              <p>Have A Nice Day</p>
+            </Ment>
+
+            <Title>Manage Your Tasks Easily</Title>
 
             <div>
               {todos.map((todo) => {
@@ -113,15 +106,22 @@ function App() {
                 );
               })}
             </div>
-          </Todolist>
 
-          <Temp>
-            <p>영상</p>
+            <TodoForm onSubmit={onSubmit}>
+              <PlusBtn type="submit">
+                <img src={plus} />
+              </PlusBtn>
+              <input
+                type="text"
+                value={newTodo}
+                onChange={(e) => setNewTodo(e.target.value)}
+              />
+            </TodoForm>
+          </TodoBox>
 
-            <Video muted autoPlay loop>
-              <source src={blue} type="video/mp4" />
-            </Video>
-          </Temp>
+          <Video muted autoPlay loop>
+            <source src={blue} type="video/mp4" />
+          </Video>
         </Section>
       </Container>
     </Div>
@@ -130,10 +130,19 @@ function App() {
 
 export default App;
 
-const Title = styled.p`
-  margin-left: 60px;
+const PlusBtn = styled.button`
+  width: 46px;
+  height: 46px;
+  background: #476ef7;
+  border-radius: 50%;
+  border: none;
+  display: flex;
 
-  font-family: "Cafe24 Ssurround";
+  justify-content: center;
+  align-items: center;
+`;
+const Title = styled.p`
+  font-family: "Cafe24Ssurround";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
@@ -142,7 +151,6 @@ const Title = styled.p`
 `;
 const Ment = styled.div`
   display: flex;
-  margin-left: 60px;
 
   div {
     width: 34px;
@@ -177,30 +185,48 @@ const Container = styled.div`
   background: #ffffff;
   border: 2.5px solid #476ef7;
   border-radius: 50px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const Section = styled.div`
   display: flex;
-  padding: 50px;
+  justify-content: space-between;
+
+  margin: 50px 50px;
+  border: 1px solid green;
+
+  height: 100%;
+  box-sizing: border-box;
 `;
 
-const Todolist = styled.div`
-  border: 1px solid gray;
-  width: 100%;
-  //margin: 30px 50px;
+const TodoBox = styled.div`
+  width: 50%;
+  position: relative;
+
+  border: 1px red solid;
 `;
 
-const Temp = styled.div`
-  border: 1px solid blue;
-  width: 100%;
-  height: auto;
-  //margin: 30px 50px;
-  background: rgba(217, 217, 217, 0.2);
+const TodoForm = styled.form`
+  padding-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+
+  input {
+    border: none;
+    border-bottom: 1px solid gray;
+  }
 `;
 
 const Video = styled.video`
-  width: 582px;
-  height: 713px;
+  width: 50%;
+  height: auto;
+  margin-left: 55px;
+
   border-radius: 18px;
   object-fit: cover;
 `;
