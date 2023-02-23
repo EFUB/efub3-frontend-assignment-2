@@ -148,6 +148,8 @@ const Title = styled.p`
   font-size: 36px;
   line-height: 42px;
   color: #000000;
+
+  margin: 0;
 `;
 const Ment = styled.div`
   display: flex;
@@ -194,7 +196,7 @@ const Section = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin: 50px 50px;
+  margin: 10px 50px 30px 50px;
   border: 1px solid green;
 
   height: 100%;

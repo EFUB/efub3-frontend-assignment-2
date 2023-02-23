@@ -60,6 +60,10 @@ const PlayBox = styled.div`
   display: flex;
   border: 1px solid blue;
   margin-left: auto;
+
+  p {
+    margin: 0;
+  }
 `;
 
 const Logo = styled.img`
@@ -76,7 +80,7 @@ const Navdiv = styled.div`
   font-size: 24px;
   line-height: 28px;
 
-  margin: 46px 60px;
+  margin: 30px 50px;
 
   border: 1px solid red;
 `;

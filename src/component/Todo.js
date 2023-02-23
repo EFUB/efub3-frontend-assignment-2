@@ -9,7 +9,7 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
 
   return (
     //onClick={() => onToggleTodo(id)}
-    <TodoDiv>
+    <TodoDiv onClick={() => onToggleTodo(id)}>
       {done && <Done />}
 
       {isOpen ? (
@@ -37,6 +37,8 @@ const TodoDiv = styled.div`
   display: flex;
 
   justify-content: space-between;
+
+  margin-top: 20px;
 `;
 
 const TodoText = styled.p`
