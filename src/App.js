@@ -25,7 +25,8 @@ function App() {
   };
 
   // 삭제
-  const onDeleteTodo = (id) => {
+  const onDeleteTodo = (event, id) => {
+    event.stopPropagation();
     console.log("삭제");
     let newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
@@ -41,11 +42,14 @@ function App() {
   };
 
   // 수정
-  const onEditTodo = (id, newText) => {
+  const onEditTodo = (event, id, newText) => {
+    event.stopPropagation();
     console.log("수정");
+
     let newTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, text: newText } : todo
     );
+
     setTodos(newTodos);
   };
 

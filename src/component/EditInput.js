@@ -11,7 +11,7 @@ const EditInput = ({ onEditTodo, todo, setIsOpen }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    onEditTodo(id, value);
+    onEditTodo(e, id, value);
 
     setValue("");
     setIsOpen(false);

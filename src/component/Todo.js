@@ -15,11 +15,20 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
       {isOpen ? (
         <EditInput onEditTodo={onEditTodo} todo={todo} setIsOpen={setIsOpen} />
       ) : (
-        <TodoText onClick={() => setIsOpen(true)}> {text}</TodoText>
+        <TodoText> {text}</TodoText>
       )}
 
-      <Delete onClick={() => onDeleteTodo(id)}>삭제</Delete>
-      <Delete onClick={() => onEditTodo(id)}>수정</Delete>
+      <Btns>
+        <Delete onClick={(event) => onDeleteTodo(event, id)}>Delete</Delete>
+        <Delete
+          onClick={(event) => {
+            event.stopPropagation();
+            setIsOpen(!isOpen);
+          }}
+        >
+          Edit
+        </Delete>
+      </Btns>
     </TodoDiv>
   );
 };
@@ -35,8 +44,7 @@ const TodoDiv = styled.div`
   border-radius: 10px;
 
   display: flex;
-
-  justify-content: space-between;
+  align-items: center;
   margin-bottom: 18px;
 `;
 
@@ -63,6 +71,16 @@ const Done = styled.div`
   top: 0px;
   background: #e05a87;
   border-radius: 10px 0px 0px 10px;
+`;
+
+const Btns = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: 5px;
+  width: 20%;
+
+  z-index: 10000;
 `;
 
 const Delete = styled.div`
