@@ -16,11 +16,11 @@ const Navbar = () => {
         </div>
 
         <div className="menu">
-          <p>3</p>
+          <p className="yellow">3</p>
           <div>Ideas</div>
         </div>
 
-        <div>Features</div>
+        <div className="menu">Features</div>
       </Menus>
 
       <PlayBox>
@@ -49,20 +49,42 @@ const SearchBox = styled.div`
   border-radius: 15px;
 
   display: flex;
+  align-items: center;
 
   margin-left: 100px;
   img {
     width: 14px;
     height: 14px;
+    margin-left: 28px;
+  }
+
+  p {
+    margin-left: 26px;
+
+    font-family: "Cafe24Ssurround";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    color: #646464;
   }
 `;
 const PlayBox = styled.div`
   display: flex;
-  border: 1px solid blue;
+  justify-content: center;
+  align-items: center;
+
   margin-left: auto;
 
   p {
-    margin: 0;
+    font-family: "Cafe24Ssurround";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: rgba(0, 0, 0, 0.3);
+
+    margin: 0 0 0 36px;
   }
 `;
 
@@ -81,39 +103,60 @@ const Navdiv = styled.div`
   line-height: 28px;
 
   margin: 30px 50px;
-
-  border: 1px solid red;
 `;
 
 const Menus = styled.div`
   display: flex;
   margin-left: 130px;
-  border: 1px solid red;
   width: auto;
 
   .menu {
     position: relative;
-    border: 1px solid gray;
-  }
-  div {
-    margin-right: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+
+    div {
+      font-family: "Cafe24Ssurround";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 28px;
+    }
   }
 
   p {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -13px;
+
     width: 18px;
     height: 18px;
+
     background: #476ef7;
     border-radius: 50%;
+
     color: white;
+    font-family: "Cafe24Ssurround";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+
+    margin: 0;
+
+    text-align: center;
+    line-height: 19px;
+  }
+
+  .yellow {
+    background: #facc2a;
   }
 `;
 
 const PlayBtn = styled.div`
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #476ef7;
 
@@ -122,6 +165,8 @@ const PlayBtn = styled.div`
   align-items: center;
 
   img {
+    width: 13px;
+    height: 13px;
     margin-left: 5px;
   }
 `;

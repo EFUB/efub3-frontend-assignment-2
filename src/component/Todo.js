@@ -37,8 +37,7 @@ const TodoDiv = styled.div`
   display: flex;
 
   justify-content: space-between;
-
-  margin-top: 20px;
+  margin-bottom: 18px;
 `;
 
 const TodoText = styled.p`
@@ -48,6 +47,12 @@ const TodoText = styled.p`
   font-size: 14px;
   line-height: 17px;
   color: #000000;
+
+  margin-left: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Done = styled.div`

@@ -149,16 +149,19 @@ const Title = styled.p`
   line-height: 42px;
   color: #000000;
 
-  margin: 0;
+  margin: 24px 0 39px 0;
 `;
 const Ment = styled.div`
   display: flex;
+  align-items: center;
 
   div {
     width: 34px;
     height: 14px;
     background: #facc2a;
     border-radius: 7.5px;
+
+    margin-right: 6px;
   }
 
   p {
@@ -194,10 +197,8 @@ const Container = styled.div`
 
 const Section = styled.div`
   display: flex;
-  justify-content: space-between;
 
   margin: 10px 50px 30px 50px;
-  border: 1px solid green;
 
   height: 100%;
   box-sizing: border-box;
@@ -206,8 +207,6 @@ const Section = styled.div`
 const TodoBox = styled.div`
   width: 50%;
   position: relative;
-
-  border: 1px red solid;
 `;
 
 const TodoForm = styled.form`
@@ -227,7 +226,7 @@ const TodoForm = styled.form`
 const Video = styled.video`
   width: 50%;
   height: auto;
-  margin-left: 55px;
+  margin-left: 30px;
 
   border-radius: 18px;
   object-fit: cover;
