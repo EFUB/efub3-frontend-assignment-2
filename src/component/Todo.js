@@ -1,14 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
 import EditInput from "./EditInput";
+import useHover from "../hooks/useHover";
 
 const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
   const { id, text, done } = todo;
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [ref, hover] = useHover();
+
   return (
-    <TodoDiv onClick={() => onToggleTodo(id)}>
+    <TodoDiv onClick={() => onToggleTodo(id)} ref={ref}>
       {done && <Done />}
 
       {isOpen ? (
@@ -17,17 +20,21 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
         <TodoText>{text}</TodoText>
       )}
 
-      <Btns>
-        <Delete onClick={(event) => onDeleteTodo(event, id)}>Delete</Delete>
-        <Delete
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
-        >
-          Edit
-        </Delete>
-      </Btns>
+      {hover ? (
+        <Btns>
+          <Delete onClick={(event) => onDeleteTodo(event, id)}>Delete</Delete>
+          <Delete
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+          >
+            Edit
+          </Delete>
+        </Btns>
+      ) : (
+        <></>
+      )}
     </TodoDiv>
   );
 };
