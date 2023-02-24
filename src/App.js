@@ -205,12 +205,18 @@ const Section = styled.div`
   margin: 10px 50px 30px 50px;
 
   height: 100%;
+
   box-sizing: border-box;
+  flex: 1;
+  input {
+    border: none;
+    border-bottom: 1px solid gray;
+  }
 `;
 
 const TodoBox = styled.div`
-  width: 50%;
   position: relative;
+  flex: 1;
 `;
 
 const TodoForm = styled.form`
@@ -218,17 +224,27 @@ const TodoForm = styled.form`
   position: absolute;
   bottom: 0;
   left: 0;
-
   display: flex;
-
+  width: 100%;
   input {
+    margin-left: 12px;
+    width: 90%;
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 5px solid #f8f9fe;
+
+    font-family: "Cafe24Ssurroundair";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  input:focus {
+    outline: none;
   }
 `;
 
 const Video = styled.video`
-  width: 50%;
+  width: 45%;
   height: auto;
   margin-left: 30px;
 

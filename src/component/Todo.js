@@ -8,14 +8,13 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    //onClick={() => onToggleTodo(id)}
     <TodoDiv onClick={() => onToggleTodo(id)}>
       {done && <Done />}
 
       {isOpen ? (
         <EditInput onEditTodo={onEditTodo} todo={todo} setIsOpen={setIsOpen} />
       ) : (
-        <TodoText> {text}</TodoText>
+        <TodoText>{text}</TodoText>
       )}
 
       <Btns>
