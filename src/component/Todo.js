@@ -23,14 +23,14 @@ const Todo = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }) => {
       {hover ? (
         <Btns>
           <Delete onClick={(event) => onDeleteTodo(event, id)}>Delete</Delete>
-          <Delete
+          <Edit
             onClick={(event) => {
               event.stopPropagation();
               setIsOpen(!isOpen);
             }}
           >
             Edit
-          </Delete>
+          </Edit>
         </Btns>
       ) : (
         <></>
@@ -84,12 +84,17 @@ const Btns = styled.div`
   justify-content: space-around;
   margin-left: auto;
   margin-right: 5px;
-  width: 20%;
+  width: 15%;
 
   z-index: 10000;
 `;
 
 const Delete = styled.div`
   color: red;
+  z-index: 100;
+`;
+
+const Edit = styled.div`
+  color: green;
   z-index: 100;
 `;
