@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import play from "../assets/play.svg";
@@ -10,17 +11,25 @@ const Navbar = () => {
       <Logo src={hand} />
 
       <Menus>
-        <div className="menu">
-          <p>3</p>
-          <div>Tasks</div>
-        </div>
+        <NavLink to="/tasks">
+          <div className="menu">
+            <p>3</p>
+            <div>Tasks</div>
+          </div>
+        </NavLink>
 
-        <div className="menu">
-          <p className="yellow">3</p>
-          <div>Ideas</div>
-        </div>
+        <NavLink to="/ideas">
+          <div className="menu">
+            <p className="yellow">3</p>
+            <div>Ideas</div>
+          </div>
+        </NavLink>
 
-        <div className="menu">Features</div>
+        <NavLink to="/features">
+          <div className="menu">
+            <div>Features</div>
+          </div>
+        </NavLink>
       </Menus>
 
       <PlayBox>
@@ -123,6 +132,7 @@ const Menus = styled.div`
       font-weight: 700;
       font-size: 24px;
       line-height: 28px;
+      color: gray;
     }
   }
 
@@ -151,6 +161,10 @@ const Menus = styled.div`
 
   .yellow {
     background: #facc2a;
+  }
+
+  .active div {
+    color: black;
   }
 `;
 
