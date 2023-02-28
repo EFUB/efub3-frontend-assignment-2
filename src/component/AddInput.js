@@ -47,8 +47,8 @@ const Form = styled.form`
 `;
 
 const PlusBtn = styled.button`
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   background: #476ef7;
   border-radius: 50%;
   border: none;
@@ -56,4 +56,9 @@ const PlusBtn = styled.button`
 
   justify-content: center;
   align-items: center;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
 `;

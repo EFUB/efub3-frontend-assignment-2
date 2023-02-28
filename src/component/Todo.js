@@ -45,7 +45,7 @@ const TodoDiv = styled.div`
   position: relative;
 
   width: 100%;
-  height: 50px;
+  height: 40px;
   background: #f8f9fe;
   border-radius: 10px;
 
@@ -72,7 +72,7 @@ const TodoText = styled.p`
 const Done = styled.div`
   position: absolute;
   width: 10px;
-  height: 50px;
+  height: 40px;
   left: 0px;
   top: 0px;
   background: #e05a87;
