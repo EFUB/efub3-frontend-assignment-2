@@ -1,6 +1,5 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
+// assets
 import play from "../assets/play.svg";
 import hand from "../assets/hand.png";
 import search from "../assets/search.svg";
@@ -11,25 +10,19 @@ const Navbar = () => {
       <Logo src={hand} />
 
       <Menus>
-        <NavLink to="/tasks">
-          <div className="menu">
-            <p>3</p>
-            <div>Tasks</div>
-          </div>
-        </NavLink>
+        <div className="menu">
+          <p>3</p>
+          <div>Tasks</div>
+        </div>
 
-        <NavLink to="/ideas">
-          <div className="menu">
-            <p className="yellow">3</p>
-            <div>Ideas</div>
-          </div>
-        </NavLink>
+        <div className="menu">
+          <p className="yellow">3</p>
+          <div>Ideas</div>
+        </div>
 
-        <NavLink to="/features">
-          <div className="menu">
-            <div>Features</div>
-          </div>
-        </NavLink>
+        <div className="menu">
+          <div>Features</div>
+        </div>
       </Menus>
 
       <PlayBox>
