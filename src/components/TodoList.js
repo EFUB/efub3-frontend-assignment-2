@@ -3,7 +3,6 @@ import TodoItem from "./TodoItem";
 const TodoList = ({ todoList, setTodoList }) => {
   return (
     <div>
-      <h1>TodoList</h1>
       {todoList.map((item) => {
         return (
           <TodoItem

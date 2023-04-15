@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled, { css } from "styled-components";
 import {
   FaPen,
   FaTrash,
@@ -36,15 +37,19 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
     );
   };
   return (
-    <div>
+    <TodoItemContainer>
       {/* 완료 버튼 */}
-      <button onClick={toggleItem}>
-        {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
-      </button>
+      <Button onClick={toggleItem}>
+        {done ? (
+          <FaCheckSquare size={iconSize} />
+        ) : (
+          <FaRegCheckSquare size={iconSize} />
+        )}
+      </Button>
       {modifying ? (
         //수정 폼
         <form style={{ display: "inline" }} onSubmit={toggleModify}>
-          <input
+          <Input
             type="text"
             value={text}
             onChange={modifyItem}
@@ -53,18 +58,46 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
         </form>
       ) : (
         //투두 내용
-        <span style={{ textDecoration: done && "line-through" }}>{text}</span>
+        <Text style={{ textDecoration: done && "line-through" }}>{text}</Text>
       )}
       {/* 수정 버튼 */}
-      <button onClick={toggleModify}>
-        <FaPen />
-      </button>
+      <Button onClick={toggleModify}>
+        <FaPen size={iconSize} />
+      </Button>
       {/* 삭제 버튼 */}
-      <button onClick={deleteItem}>
-        <FaTrash />
-      </button>
-    </div>
+      <Button onClick={deleteItem}>
+        <FaTrash size={iconSize} />
+      </Button>
+    </TodoItemContainer>
   );
 };
+
+const TodoItemContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  background-color: white;
+  border: none;
+  padding-top: 7px;
+`;
+
+const Text = styled.div`
+  font-size: 25px;
+  width: 210px;
+  ${(props) =>
+    props.done &&
+    css`
+      text-decoration: line-through;
+    `}
+`;
+
+const Input = styled.input`
+  border: none;
+  border-bottom: 1px black solid;
+`;
+
+const iconSize = "23px";
 
 export default TodoItem;
