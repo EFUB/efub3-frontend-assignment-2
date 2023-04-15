@@ -94,6 +94,8 @@ const Text = styled.div`
 `;
 
 const Input = styled.input`
+  font-size: 25px;
+  width: 210px;
   border: none;
   border-bottom: 1px black solid;
 `;
