@@ -58,7 +58,7 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
         </form>
       ) : (
         //투두 내용
-        <Text style={{ textDecoration: done && "line-through" }}>{text}</Text>
+        <Text done={done}>{text}</Text>
       )}
       {/* 수정 버튼 */}
       <Button onClick={toggleModify}>
@@ -89,6 +89,7 @@ const Text = styled.div`
   ${(props) =>
     props.done &&
     css`
+      color: grey;
       text-decoration: line-through;
     `}
 `;
