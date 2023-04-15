@@ -80,7 +80,7 @@ const TodoItemContainer = styled.div`
 const Button = styled.button`
   background-color: white;
   border: none;
-  padding-top: 7px;
+  padding-top: 10px;
 `;
 
 const Text = styled.div`
@@ -98,6 +98,6 @@ const Input = styled.input`
   border-bottom: 1px black solid;
 `;
 
-const iconSize = "23px";
+const iconSize = "20px";
 
 export default TodoItem;
