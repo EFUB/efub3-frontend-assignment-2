@@ -1,0 +1,47 @@
+.Editor {
+  border: 1px solid gray;
+  text-align: center;
+  padding: 20px;
+}
+
+.Editor input,
+textarea {
+  margin-bottom: 20px;
+  width: 500px;
+  padding: 10px;
+}
+
+.Editor button {
+  width: 300px;
+  padding: 10px;
+  cursor: pointer;
+  /* 커서모양을 손가락 모양으로 바꿔줌 */
+}
+
+/* List */
+.List {
+  border: 1px solid gray;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.List h2 {
+  text-align: center;
+}
+
+/* Item */
+.Item {
+  background-color: rgb(240, 240, 240);
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.Item .content {
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.Item .Done {
+  color: gray;
+}
