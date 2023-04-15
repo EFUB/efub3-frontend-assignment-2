@@ -1,7 +1,13 @@
 import { useState } from "react";
+import {
+  FaPen,
+  FaTrash,
+  FaCheckSquare,
+  FaRegCheckSquare,
+} from "react-icons/fa";
 
 const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
-  const [modifying, setModifying] = useState(false); //수정하는 중인지
+  const [modifying, setModifying] = useState(false); //수정하는 중인지 여부
   //투두 완료 토글
   const toggleItem = () => {
     setTodoList(
@@ -31,8 +37,12 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   };
   return (
     <div>
-      <button onClick={toggleItem}>done</button>
+      {/* 완료 버튼 */}
+      <button onClick={toggleItem}>
+        {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
+      </button>
       {modifying ? (
+        //수정 폼
         <form style={{ display: "inline" }} onSubmit={toggleModify}>
           <input
             type="text"
@@ -42,10 +52,17 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
           />
         </form>
       ) : (
+        //투두 내용
         <span style={{ textDecoration: done && "line-through" }}>{text}</span>
       )}
-      <button onClick={toggleModify}>modify</button>
-      <button onClick={deleteItem}>delete</button>
+      {/* 수정 버튼 */}
+      <button onClick={toggleModify}>
+        <FaPen />
+      </button>
+      {/* 삭제 버튼 */}
+      <button onClick={deleteItem}>
+        <FaTrash />
+      </button>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaPlus } from "react-icons/fa";
 
 const TodoCreate = ({ todoList, setTodoList }) => {
   const [text, setText] = useState("");
@@ -23,7 +24,9 @@ const TodoCreate = ({ todoList, setTodoList }) => {
           onChange={handleChange}
           placeholder="Write your task"
         />
-        <input type="submit" value="+" />
+        <button type="submit">
+          <FaPlus />
+        </button>
       </form>
     </div>
   );
