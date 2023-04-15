@@ -1,0 +1,17 @@
+.list{
+  color:blue
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.todo-text {
+  flex-grow: 1;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
