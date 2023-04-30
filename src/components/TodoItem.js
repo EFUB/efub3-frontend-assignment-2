@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useState } from "react";
 
 const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
@@ -29,10 +29,12 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
         setEditedItem(e.target.value);
     };
 
-    if(isEditing) {
-        return (
-            <>
-                <TodoItemBlock>
+    // 리턴문 삼항연산자로 수정
+   return (
+    <>
+        <TodoItemBlock>
+            {isEditing ? (
+                <>
                     <TodoForm onSubmit={handleEdit}>
                         <InputBox
                             value={editedItem}
@@ -40,21 +42,17 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
                         />
                     </TodoForm>
                     <EditButton onClick={handleEdit}>저장</EditButton>
-                </TodoItemBlock>
-            </>
-        )
-    }
-    else {
-        return (
-            <>
-                <TodoItemBlock>
-                    <Text isDone={done} onClick={()=>setIsEditing(true)}>{text}</Text>
+                </>
+            ) : (
+                <> {/* props에서 className으로 수정 */}
+                    <Text className={done ? "isDone" : null} onClick={()=>setIsEditing(true)}>{text}</Text> 
                     <ToggleButton onClick={toggleItem}>완료</ToggleButton>
                     <DeleteButton onClick={deleteItem}>삭제</DeleteButton>
-                </TodoItemBlock>
-            </>
-        );
-    }
+                </>
+            )}
+        </TodoItemBlock>
+    </>
+   );
 };
 
 const TodoForm = styled.form`
@@ -74,18 +72,16 @@ const TodoItemBlock = styled.div`
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid darkgray;
+    /* 완료 스타일 코드 추가 */
+    .isDone {
+        color: gray;
+        text-decoration: line-through;
+    }
 `;
 const Text = styled.div`
     flex: 1;
     font-size: 20px;
     padding: 0.5em;
-    ${(props) =>
-        props.isDone &&
-        css`
-            color: gray;
-            text-decoration: line-through;
-        `
-    }
 `;
 const DeleteButton = styled.button`
     outline: none;

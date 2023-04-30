@@ -2,6 +2,7 @@ import TodoList from './components/TodoList';
 import TodoCreate from './components/TodoCreate';
 import TodoTemplate from './components/TodoTemplate';
 import { useState, useEffect } from "react";
+import styled from 'styled-components';
 
 function App() {
   const [todoList, setTodoList] = useState(() => {
@@ -16,19 +17,23 @@ function App() {
   return (
     <>
       <TodoTemplate>
-        <h1 style={{
-          textAlign: "center"
-        }}>Todo List</h1>
-        <p style={{
-          textAlign: "center",
-          marginTop: "0"
-        }}>
-          ※수정은 항목을 눌러주세요※
-        </p>
+        {/* styled-components로 수정 */}
+        <TitleText>Todo List</TitleText>
+        <NoticeText>※수정은 항목을 눌러주세요※</NoticeText>
         <TodoCreate todoList={todoList} setTodoList={setTodoList}/>
         <TodoList todoList={todoList} setTodoList={setTodoList}/>
       </TodoTemplate>
     </>
   );
 }
+
+/* styled-components로 수정 */
+const TitleText = styled.h1`
+  text-align: center;
+`;
+const NoticeText = styled.p`
+  text-align: center;
+  margin-top: 0;
+`;
+
 export default App;
