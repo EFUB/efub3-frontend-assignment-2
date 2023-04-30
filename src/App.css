@@ -1,0 +1,9 @@
+body {
+  background-image: url(./components/image/4.jpg);
+}
+.title {
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  font-family: "Roboto Slab", serif;
+}
