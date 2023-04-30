@@ -28,7 +28,7 @@ const TodoItem = ({
     setActiveItem(id);
   };
 
-  const Priority = () => {
+  const PriorityCheckBox = () => {
     if (priority === 0) {
       return done ? <Check0 /> : <Priority0 />;
     } else if (priority === 1) {
@@ -45,7 +45,9 @@ const TodoItem = ({
       <Container>
         <TodoItemBlock>
           <Container>
-            <ToggleBtn onClick={toggleTodo}>{Priority()}</ToggleBtn>
+            <ToggleBtn onClick={toggleTodo}>
+              <PriorityCheckBox />
+            </ToggleBtn>
             <Todo isDone={done}>{text}</Todo>
           </Container>
           <DetailBtn onClick={toggleDetail}>
@@ -62,22 +64,12 @@ const Container = styled.div`
   margin-bottom: 5px;
 `;
 
-const Check0 = styled(CheckP0)`
-  width: 21px;
-  height: 21px;
-`;
-
-const Check1 = styled(CheckP1)`
-  width: 21px;
-  height: 21px;
-`;
-
-const Check2 = styled(CheckP2)`
-  width: 21px;
-  height: 21px;
-`;
-
-const Check3 = styled(CheckP3)`
+const [Check0, Check1, Check2, Check3] = [
+  CheckP0,
+  CheckP1,
+  CheckP2,
+  CheckP3,
+].map((Component) => styled(Component))`
   width: 21px;
   height: 21px;
 `;
