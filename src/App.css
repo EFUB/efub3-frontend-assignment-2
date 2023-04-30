@@ -1,7 +1,10 @@
 .Editor {
   border: 1px solid gray;
+  border-radius: 20px;
   text-align: center;
   padding: 20px;
+  margin: 5px 5px 0 5px;
+  box-shadow: 0px 0px 5px 0px gray;
 }
 
 .Editor input,
@@ -12,10 +15,14 @@ textarea {
 }
 
 .Editor button {
-  width: 300px;
+  width: 200px;
   padding: 10px;
   cursor: pointer;
   /* 커서모양을 손가락 모양으로 바꿔줌 */
+  border-radius: 10px;
+  background-color: rgb(96, 146, 247);
+  border-color: aliceblue;
+  color: white;
 }
 
 /* List */
@@ -23,6 +30,11 @@ textarea {
   border: 1px solid gray;
   padding: 20px;
   margin-top: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 0px gray;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .List h2 {
@@ -42,6 +54,16 @@ textarea {
   margin-top: 30px;
 }
 
-.Item .Done {
+.Item .done {
   color: gray;
+}
+
+.Item button {
+  margin-right: 5px;
+  background-color: rgb(96, 146, 247);
+  border-color: aliceblue;
+  color: white;
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
 }

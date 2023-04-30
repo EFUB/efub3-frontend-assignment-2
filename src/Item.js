@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Item = ({ content, id, onDelete, onEdit }) => {
+const Item = ({ content, id, onDelete, onEdit, onToggle, item }) => {
   const [isEdit, setIsEdit] = useState(false);
   const toggleIsEdit = () => setIsEdit(!isEdit);
   const [localContent, setLocalContent] = useState(content);
@@ -34,22 +34,24 @@ const Item = ({ content, id, onDelete, onEdit }) => {
   //완료 됐을 때 함수
   const handleDone = (e) => {
     alert("완료!");
-    onDelete(id);
+    onToggle(id);
   };
 
   return (
     <div className="Item">
-      <div className="content">
-        {isEdit ? (
-          <>
-            <textarea
-              value={localContent}
-              onChange={(e) => setLocalContent(e.target.value)}
-            />
-          </>
-        ) : (
-          <>{content}</>
-        )}
+      <div className={item.isDone ? "done" : ""}>
+        <div className="content">
+          {isEdit ? (
+            <>
+              <textarea
+                value={localContent}
+                onChange={(e) => setLocalContent(e.target.value)}
+              />
+            </>
+          ) : (
+            <>{content}</>
+          )}
+        </div>
       </div>
 
       {isEdit ? (
