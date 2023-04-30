@@ -22,6 +22,7 @@ function App() {
       //새로운 todo 객체 생성
       content,
       id: dataId.current, // 현재 상태값
+      isDone: false,
     };
 
     dataId.current += 1; //새로운 아이템 설정후에 id 값에 1 더해준다.
@@ -43,10 +44,21 @@ function App() {
     );
   };
 
+  const onToggle = (targetId) => {
+    setData(
+      data.map((it) => (it.id === targetId ? { ...it, isDone: true } : it))
+    );
+  };
+
   return (
     <div className="App">
       <Editor onCreate={onCreate} />
-      <List onDelete={onDelete} onEdit={onEdit} list={data} />
+      <List
+        onDelete={onDelete}
+        onEdit={onEdit}
+        list={data}
+        onToggle={onToggle}
+      />
     </div>
   );
 }
