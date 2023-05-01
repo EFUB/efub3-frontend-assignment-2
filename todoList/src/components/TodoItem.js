@@ -19,23 +19,23 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
   };
 
   //아이템 수정 시작
-  function editToDoStart(id, text) {
+  const editToDoStart = (id, text) => {
     setIsEditing(true);
     setEditText(text);
-  }
+  };
 
   //아이템 수정 저장
-  function editToDoSave() {
+  const editToDoSave = () => {
     const newTodoList = todoList.map((todo) =>
       todo.id === id ? { ...todo, text: editText } : todo
     );
     setTodoList(newTodoList);
     setIsEditing(false);
-  }
+  };
   //아이템 수정 취소
-  function editToDoCancel() {
+  const editToDoCancel = () => {
     setIsEditing(false);
-  }
+  };
 
   //체크박스를 누르면 아이템 완료 표시, 연필 아이콘을 누르면 아이템 수정, 휴지통 아이콘을 누르면 아이템 삭제
   return (
@@ -45,9 +45,17 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
           {done && <MdDone />}
         </CheckBox>{" "}
         <Text isDone={done}>{text}</Text>
-        <ReDo onClick={() => editToDoStart(id, text)}>
-          <MdOutlineEdit />
-        </ReDo>
+        {isEditing ? (
+          <ReDo onClick={() => editToDoCancel()}>
+            <MdOutlineEdit />
+          </ReDo>
+        ) : (
+          <ReDo onClick={() => editToDoStart(id, text)}>
+            <MdOutlineEdit />
+          </ReDo>
+        )}
+        {/*수정 중이라면 수정 버튼을 눌렀을때 수정을 취소하도록 하고
+        수정 중이 아니라면 수정을 시작하도록 함 */}
         <Remove>
           <MdDelete onClick={deleteItem} />
         </Remove>
