@@ -33,7 +33,7 @@ const TodoCreate = ({ todoList, setTodoList }) => {
 const Form = styled.form`
   display: flex;
   justify-content: space-between;
-  /* space-between 적용안됨 */
+  width: 100%;
   align-items: center;
   margin: 20px 0;
 `;
