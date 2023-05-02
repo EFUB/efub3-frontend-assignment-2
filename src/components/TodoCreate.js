@@ -41,6 +41,7 @@ const Form = styled.form`
 const Input = styled.input`
   font-size: 20px;
   height: 30px;
+  width: 100%;
   padding: 0 10px;
 `;
 
@@ -48,6 +49,7 @@ const Button = styled.button`
   background-color: white;
   padding-top: 5px;
   border: none;
+  padding-right: 0;
 `;
 
 export default TodoCreate;

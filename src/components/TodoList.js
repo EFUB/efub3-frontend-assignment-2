@@ -1,8 +1,9 @@
 import TodoItem from "./TodoItem";
+import styled from "styled-components";
 
 const TodoList = ({ todoList, setTodoList }) => {
   return (
-    <div>
+    <TodoListContainer>
       {todoList.map((item) => {
         return (
           <TodoItem
@@ -14,8 +15,12 @@ const TodoList = ({ todoList, setTodoList }) => {
           />
         );
       })}
-    </div>
+    </TodoListContainer>
   );
 };
+
+const TodoListContainer = styled.div`
+  width: 100%;
+`;
 
 export default TodoList;

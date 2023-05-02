@@ -30,7 +30,7 @@ const RootContainer = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   width: 350px;
   padding: 50px;
   margin: 20px;
