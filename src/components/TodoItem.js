@@ -19,7 +19,7 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   const deleteItem = () => {
     setTodoList(
       todoList.filter((item) => {
-        return item.id != id;
+        return item.id !== id;
       })
     );
   };
