@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import {
   WiThunderstorm,
   WiRainMix,
@@ -84,7 +85,7 @@ function Weather() {
     }
   };
 
-  console.log("new");
+  console.log("____________________________");
   console.log(latitude, longitude);
   console.log(weather);
   console.log(getIcons());
@@ -93,16 +94,48 @@ function Weather() {
     <div>
       <h1>Weather Page</h1>
       {weather ? (
-        <div>
-          <div>{getIcons()}</div>
-          <div>{(weather.main.temp - 273.15).toFixed(1)}°C</div>
-          <div>{weather.weather[0].main}</div>
-        </div>
+        <WeatherContainer>
+          <City>{weather.name}</City>
+          <div style={{ display: "flex" }}>
+            <Icon>{getIcons()}</Icon>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}
+            >
+              <Temp>{(weather.main.temp - 273.15).toFixed(0)}°</Temp>
+              <Condition>{weather.weather[0].main}</Condition>
+            </div>
+          </div>
+        </WeatherContainer>
       ) : (
         <div>loading...</div>
       )}
     </div>
   );
 }
+
+const WeatherContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const City = styled.div`
+  font-size: 20px;
+`;
+
+const Icon = styled.div`
+  margin: -20px 0px -20px -20px;
+`;
+
+const Temp = styled.div`
+  font-size: 70px;
+`;
+
+const Condition = styled.div``;
 
 export default Weather;
