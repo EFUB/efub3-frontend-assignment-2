@@ -9,12 +9,6 @@ import WeatherPage from "./pages/Weather";
 import Clock from "./components/Clock";
 const App = () => {
   return (
-    //top : 날씨 현재 시각 추가
-    //nav바 : 사이드바
-    //todo : 메인페이지
-    //board : 게시판
-    //video : 유튜브영상
-    //story : 현재 스토리
     <>
       <Clock />
       <Header />
