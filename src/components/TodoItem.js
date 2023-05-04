@@ -19,7 +19,7 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   const deleteItem = () => {
     setTodoList(
       todoList.filter((item) => {
-        return item.id != id;
+        return item.id !== id;
       })
     );
   };
@@ -74,13 +74,15 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
 
 const TodoItemContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const Button = styled.button`
   background-color: white;
   border: none;
   padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0;
 `;
 
 const Text = styled.div`

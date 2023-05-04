@@ -33,7 +33,7 @@ const TodoCreate = ({ todoList, setTodoList }) => {
 const Form = styled.form`
   display: flex;
   justify-content: space-between;
-  /* space-between 적용안됨 */
+  width: 100%;
   align-items: center;
   margin: 20px 0;
 `;
@@ -41,6 +41,7 @@ const Form = styled.form`
 const Input = styled.input`
   font-size: 20px;
   height: 30px;
+  width: 100%;
   padding: 0 10px;
 `;
 
@@ -48,6 +49,7 @@ const Button = styled.button`
   background-color: white;
   padding-top: 5px;
   border: none;
+  padding-right: 0;
 `;
 
 export default TodoCreate;
