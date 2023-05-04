@@ -14,6 +14,15 @@ const Header = () => {
       </NavLink>
       <NavLink
         className={"title"}
+        to="/weather"
+        style={({ isActive }) =>
+          isActive ? { color: "#6C12CC" } : { color: "white" }
+        }
+      >
+        Weather
+      </NavLink>
+      <NavLink
+        className={"title"}
         to="/photo"
         style={({ isActive }) =>
           isActive ? { color: "#6C12CC" } : { color: "white" }
@@ -30,33 +39,22 @@ const Header = () => {
       >
         Video
       </NavLink>
-      <NavLink
-        className={"title"}
-        to="/board"
-        style={({ isActive }) =>
-          isActive ? { color: "#6C12CC" } : { color: "white" }
-        }
-      >
-        Board
-      </NavLink>
     </Navbar>
   );
 };
 
 const Navbar = styled.div`
-  color: white;
   display: flex;
-  /* background-color: rgba(163, 175, 220, 0.65); */
-  background-color: black;
+  background-color: #99dfec;
   justify-content: space-around;
   z-index: 100;
   padding-top: 30px;
   padding-bottom: 30px;
   .title {
-    font-size: 23px;
+    font-size: 25px;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
-    font-weight: 1000;
+    font-weight: 800;
     :hover {
       transform: scale(1.2);
     }

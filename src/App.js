@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import TodoPage from "./pages/TodoList";
 import Header from "./components/Header";
-import Weather from "./components/Weather";
 import PhotoPage from "./pages/Photos";
 import VideoPage from "./pages/Video";
-
+import WeatherPage from "./pages/Weather";
+import Clock from "./components/Clock";
 const App = () => {
   return (
     //top : 날씨 현재 시각 추가
@@ -16,13 +16,14 @@ const App = () => {
     //video : 유튜브영상
     //story : 현재 스토리
     <>
-      <Weather />
+      <Clock />
       <Header />
       <Routes>
         <Route path="/" element={<TodoPage />} />
         <Route path="/photo" element={<PhotoPage />} />
         <Route path="/video" element={<VideoPage />} />
-        <Route path="/board" />
+        <Route path="/weather" element={<WeatherPage />} />
+        <Route path="*" element={<h1>404 not Found</h1>}></Route>
       </Routes>
     </>
   );

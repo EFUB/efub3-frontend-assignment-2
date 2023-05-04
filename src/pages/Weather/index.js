@@ -15,7 +15,7 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-const Weather = () => {
+const WeatherPage = () => {
   const city = "Seoul";
   const url = `${api.base}weather?q=${city}&appid=${api.key}`;
   const [weather, setWeather] = useState("");
@@ -40,45 +40,67 @@ const Weather = () => {
       weather.id === 800 ? 0 : (parseInt(weather.id) / 100).toFixed(0);
     switch (iconId) {
       case "0":
-        return <TiWeatherSunny size="4rem" color="white" />;
+        return <TiWeatherSunny size="17rem" color="white" />;
       case "2":
-        return <TiWeatherStormy size="4rem" color="white" />;
+        return <TiWeatherStormy size="17rem" color="white" />;
       case "3":
-        return <TiWeatherShower size="4rem" color="white" />;
+        return <TiWeatherShower size="17rem" color="white" />;
       case "5":
-        return <TiWeatherDownpour size="4rem" color="white" />;
+        return <TiWeatherDownpour size="17rem" color="white" />;
       case "6":
-        return <TiWeatherSnow size="4rem" color="white" />;
+        return <TiWeatherSnow size="17rem" color="white" />;
       case ("7", "8"):
-        return <TiWeatherCloudy size="4rem" color="white" />;
+        return <TiWeatherCloudy size="17rem" color="white" />;
       default:
-        return <TiWeatherSunny size="4rem" color="white" />;
+        return <TiWeatherSunny size="17rem" color="white" />;
     }
   };
   return (
     <Wrapper>
-      <div>
-        <div>{selectIcon()}</div>
-        <div>{weather.main}</div>
-        <Temperature>{(weather.temperature - 273.15).toFixed(2)}</Temperature>
-      </div>
+      <TextContainer>
+        <Text>{city}의 날씨는?</Text>
+        <Weather>{weather.main}</Weather>
+        <Text>현재의 온도는?</Text>
+        <Temperature>{(weather.temperature - 273.15).toFixed(1)}도</Temperature>
+      </TextContainer>
+      <IconContainer>{selectIcon()}</IconContainer>
     </Wrapper>
   );
 };
-export default Weather;
+export default WeatherPage;
+const Text = styled.div`
+  font-size: 40px;
+`;
+const TextContainer = styled.div`
+  padding-top: 50px;
+`;
 const Temperature = styled.div`
-  font-size: 24px;
-  margin-top: 10px;
   font-weight: 500;
+  color: #6c12cc;
+  font-weight: 700;
+  font-size: 50px;
+`;
+const Weather = styled.div`
+  font-size: 50px;
+  color: #6c12cc;
+
+  font-weight: 700;
 `;
 const Wrapper = styled.div`
-  background-color: skyblue;
-  width: 100px;
-  height: 180px;
-  position: absolute;
-  right: 0;
-  top: 500px;
+  width:100%:
+  height:100%;
   padding-left: 20px;
+  display:flex;
+  margin-top:150px;
+  align-items:center;
+  justify-content:center;
 `;
-
+const IconContainer = styled.div`
+  width: 350px;
+  height: 350px;
+  background-color: skyblue;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: 100px;
+`;
 // export default Weather;

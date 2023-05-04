@@ -12,7 +12,7 @@ const PhotoPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const key = searchParams.get("keyword");
   let keyword = key;
-  const url = `https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=${Access_key}&per_page=10`;
+  const url = `https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=${Access_key}&per_page=12`;
   axios
     .get(url)
     .then((responseData) => {

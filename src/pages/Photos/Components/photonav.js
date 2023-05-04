@@ -18,9 +18,10 @@ const Wrapper = styled.div`
   width: 700px;
   height: 100px;
   display: flex;
+  font-weight: 800;
   justify-content: space-around;
+  color: #6c12cc;
   margin: 0 auto;
   margin-top: 50px;
   font-size: 25px;
-  font-weight: 500;
 `;
