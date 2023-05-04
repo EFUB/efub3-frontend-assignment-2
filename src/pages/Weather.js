@@ -1,18 +1,42 @@
 import React, { useState, useEffect } from "react";
+import {
+  WiThunderstorm,
+  WiRainMix,
+  WiRain,
+  WiSnowflakeCold,
+  WiFog,
+  WiDaySunny,
+  WiCloudy,
+} from "react-icons/wi";
 
 const API_KEY = "9865a2f1d2bcb4dd8c68487c70fd2943";
+const ICON_SIZE = "200";
 
-const Weather = () => {
-  const [latitude, setLatitude] = React.useState("");
-  const [longitude, setLongitude] = React.useState("");
+// const iconsWi = {
+//   Thunderstorm: "WiThunderstorm",
+//   Drizzle: "WiRainMix",
+//   Rain: "WiRain",
+//   Snow: "WiSnowflakeCold",
+//   Atmosphere: "WiFog",
+//   Clear: "WiDaySunny",
+//   Clouds: "WiCloudy",
+// };
+
+// const iconsFi = {
+//   Thunderstorm: "TiWeatherStormy",
+//   Drizzle: "TiWeatherShower",
+//   Rain: "TiWeatherDownpour",
+//   Snow: "TiWeatherSnow",
+//   Atmosphere: "TiWeatherWindyCloudy",
+//   Clear: "TiWeatherSunny",
+//   Clouds: "TiWeatherCloudy",
+// };
+
+function Weather() {
+  const [latitude, setLatitude] = React.useState(0);
+  const [longitude, setLongitude] = React.useState(0);
   const [weather, setWeather] = useState();
-
-  useEffect(() => {
-    if (window.navigator.geolocation) {
-      // geolocation 지원할 경우 현재 위치 get
-      window.navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }, []);
+  const [id, setId] = useState();
 
   const success = (event) => {
     setLatitude(event.coords.latitude); // 위도
@@ -20,30 +44,65 @@ const Weather = () => {
   };
 
   const error = () => {
-    console.log("fail to get the location");
+    alert("fail to get the location");
   };
 
   const getWeather = async () => {
+    // geolocation 지원할 경우 현재 위치 get
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
     );
-
     const json = await response.json();
     setWeather(json);
+    setId(parseInt(json.weather[0].id));
   };
 
   useEffect(() => {
     getWeather();
   }, []);
 
+  const getIcons = () => {
+    const group = id === 800 ? 0 : Math.floor(id / 100);
+    switch (group) {
+      case 2:
+        return <WiThunderstorm size={ICON_SIZE} />;
+      case 3:
+        return <WiRainMix size={ICON_SIZE} />;
+      case 5:
+        return <WiRain size={ICON_SIZE} />;
+      case 6:
+        return <WiSnowflakeCold size={ICON_SIZE} />;
+      case 7:
+        return <WiFog size={ICON_SIZE} />;
+      case 0:
+        return <WiDaySunny size={ICON_SIZE} />;
+      case 8:
+        return <WiCloudy size={ICON_SIZE} />;
+    }
+  };
+
+  console.log("new");
   console.log(latitude, longitude);
   console.log(weather);
+  console.log(getIcons());
 
   return (
     <div>
       <h1>Weather Page</h1>
+      {weather ? (
+        <div>
+          <div>{getIcons()}</div>
+          <div>{(weather.main.temp - 273.15).toFixed(1)}°C</div>
+          <div>{weather.weather[0].main}</div>
+        </div>
+      ) : (
+        <div>loading...</div>
+      )}
     </div>
   );
-};
+}
 
 export default Weather;
