@@ -54,11 +54,11 @@ function Weather() {
       navigator.geolocation.getCurrentPosition(success, error);
     }
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=7&appid=${API_KEY}`
     );
     const json = await response.json();
     setWeather(json);
-    setId(parseInt(json.weather[0].id));
+    setId(parseInt(json.current.weather[0].id));
   };
 
   useEffect(() => {
@@ -95,7 +95,7 @@ function Weather() {
       <h1>Weather Page</h1>
       {weather ? (
         <WeatherContainer>
-          <City>{weather.name}</City>
+          {/* <City>{weather.city.name}</City> */}
           <div style={{ display: "flex" }}>
             <Icon>{getIcons()}</Icon>
             <div
@@ -106,8 +106,8 @@ function Weather() {
                 marginBottom: "20px",
               }}
             >
-              <Temp>{(weather.main.temp - 273.15).toFixed(0)}°</Temp>
-              <Condition>{weather.weather[0].main}</Condition>
+              <Temp>{(weather.current.temp - 273.15).toFixed(0)}°</Temp>
+              <Condition>{weather.current.weather[0].main}</Condition>
             </div>
           </div>
         </WeatherContainer>
