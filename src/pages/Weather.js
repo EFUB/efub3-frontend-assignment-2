@@ -11,6 +11,8 @@ import {
   WiCloudy,
 } from "react-icons/wi";
 
+import { TbLoader } from "react-icons/tb";
+
 const API_KEY = "9865a2f1d2bcb4dd8c68487c70fd2943";
 const ICON_SIZE = "200";
 
@@ -81,7 +83,9 @@ function Weather() {
           </Forecast>
         </WeatherContainer>
       ) : (
-        <div>loading...</div>
+        <Loading>
+          <TbLoader size={30} />
+        </Loading>
       )}
     </div>
   );
@@ -96,15 +100,15 @@ const WeatherContainer = styled.div`
 
 const City = styled.div`
   flex: 1;
-  font-size: 50px;
+  font-size: 40px;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 70px;
 `;
 
 const Current = styled.div`
   display: flex;
-  flex: 3;
+  flex: 4;
   align-items: center;
 `;
 
@@ -123,12 +127,21 @@ const Temp = styled.div`
 `;
 
 const Condition = styled.div`
-  font-size: 20px;
+  font-size: 23px;
   margin-left: 10px;
 `;
 
 const Forecast = styled.div`
-  flex: 2;
+  flex: 3;
+  display: flex;
+  align-items: center;
+`;
+
+const Loading = styled.div`
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default Weather;

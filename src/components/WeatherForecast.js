@@ -1,28 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-const DAY_OF_THE_WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
 function WeatherForecast({ daily, getIcons }) {
   return (
-    <SlideContainer>
+    <Container>
       {daily.map((day, key) => {
-        const date = new window.Date(day.dt - KR_TIME_DIFF);
-        const dayOfTheWeek = DAY_OF_THE_WEEK[date.getDay()];
+        const minTemp = (day.temp.min - 273.15).toFixed(0);
+        const maxTemp = (day.temp.max - 273.15).toFixed(0);
         return (
           <Day key={key}>
-            <Date>{dayOfTheWeek}</Date>
-            <Icon>{getIcons(day.weather[0].id, 50)}</Icon>
-            <Temp>{(day.temp.day - 273.15).toFixed(0)}°</Temp>
+            <Icon>{getIcons(day.weather[0].id, 55)}</Icon>
+            <Condition>{day.weather[0].main}</Condition>
+            <Temp>
+              <MinTemp>{minTemp}°</MinTemp>
+              <Slash>/</Slash>
+              <MaxTemp>{maxTemp}°</MaxTemp>
+            </Temp>
           </Day>
         );
       })}
-    </SlideContainer>
+    </Container>
   );
 }
 
-const SlideContainer = styled.div`
+const Container = styled.div`
   display: flex;
 `;
 
@@ -32,20 +33,40 @@ const Day = styled.div`
   justify-content: center;
   align-items: center;
   width: 90px;
-  height: 130px;
-  background: beige;
-`;
-
-const Date = styled.div`
-  font-size: 20px;
+  height: 110px;
 `;
 
 const Icon = styled.div`
   margin: -7px -3px;
+  flex: 3;
+`;
+
+const Condition = styled.div`
+  font-size: 17px;
+  flex: 1;
 `;
 
 const Temp = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 20px;
+  flex: 1;
+`;
+
+const MinTemp = styled.div`
+  color: dodgerblue;
+  font-size: 15px;
+  margin-top: 3px;
+`;
+
+const Slash = styled.div`
+  color: grey;
+  font-size: 16px;
+`;
+
+const MaxTemp = styled.div`
+  color: crimson;
+  font-size: 17px;
 `;
 
 export default WeatherForecast;

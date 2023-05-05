@@ -11,7 +11,7 @@ const Nav = () => {
   const NavLinkStyle = ({ isActive }) =>
     isActive
       ? { ...defautStyle, color: "black" }
-      : { ...defautStyle, color: "lightgrey" };
+      : { ...defautStyle, color: "grey" };
 
   return (
     <NavContainer>
@@ -33,5 +33,5 @@ const NavContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-  background: beige;
+  background: lightblue;
 `;

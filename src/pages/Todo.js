@@ -33,7 +33,7 @@ const Container = styled.div`
   align-items: center;
   width: 350px;
   padding: 50px;
-  margin: 20px;
+  margin-top: 70px;
   border: 1px grey solid;
   border-radius: 30px;
 `;
