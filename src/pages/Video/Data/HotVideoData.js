@@ -34,12 +34,12 @@ const HotVideoData = [
   {
     id: 3,
     title:
-      "[SUB] 귀여운 쌈아치😈 언니, 한 번만 살려줘... [차린건 쥐뿔도 없지만] EP.18 #이영지 #김채원 #르세라핌 (ENG/JPN)",
+      "[#나혼자산다] 아 잠복근무 아니라고요;;ㅠ 폼 Me쳐버린 코쿤 나래 데이트 part 1💗 | #박나래 #코드쿤스트 #데이트 MBC230421방송",
     iframe: (
       <iframe
         width="100%"
         height="100%"
-        src="https://www.youtube.com/embed/Kjq10TNm14k"
+        src="https://www.youtube.com/embed/-k6PigPSqi4"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
