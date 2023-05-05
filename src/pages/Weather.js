@@ -13,59 +13,35 @@ import {
 const API_KEY = "9865a2f1d2bcb4dd8c68487c70fd2943";
 const ICON_SIZE = "200";
 
-// const iconsWi = {
-//   Thunderstorm: "WiThunderstorm",
-//   Drizzle: "WiRainMix",
-//   Rain: "WiRain",
-//   Snow: "WiSnowflakeCold",
-//   Atmosphere: "WiFog",
-//   Clear: "WiDaySunny",
-//   Clouds: "WiCloudy",
-// };
-
-// const iconsFi = {
-//   Thunderstorm: "TiWeatherStormy",
-//   Drizzle: "TiWeatherShower",
-//   Rain: "TiWeatherDownpour",
-//   Snow: "TiWeatherSnow",
-//   Atmosphere: "TiWeatherWindyCloudy",
-//   Clear: "TiWeatherSunny",
-//   Clouds: "TiWeatherCloudy",
-// };
-
 function Weather() {
-  const [latitude, setLatitude] = React.useState(0);
-  const [longitude, setLongitude] = React.useState(0);
   const [weather, setWeather] = useState();
-  const [id, setId] = useState();
 
-  const getWeather = async () => {
-    // geolocation 지원할 경우 현재 위치 get
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  const getLocation = async () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator.geolocation.getCurrentPosition(getWeather, error);
     }
+  };
+
+  const getWeather = async (event) => {
+    const latitude = event.coords.latitude;
+    const longitude = event.coords.longitude;
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=7&appid=${API_KEY}`
     );
     const json = await response.json();
     setWeather(json);
-    setId(parseInt(json.current.weather[0].id));
-  };
-
-  const success = (event) => {
-    setLatitude(event.coords.latitude); // 위도
-    setLongitude(event.coords.longitude); // 경도
   };
 
   const error = () => {
     alert("fail to get the location");
   };
 
-  useEffect(() => {
-    getWeather();
-  }, []);
-
   const getIcons = () => {
+    const id = parseInt(weather.current.weather[0].id);
     const group = id === 800 ? 0 : Math.floor(id / 100);
     switch (group) {
       case 2:
@@ -85,8 +61,6 @@ function Weather() {
     }
   };
 
-  console.log("____________________________");
-  console.log(latitude, longitude);
   console.log(weather);
 
   return (
