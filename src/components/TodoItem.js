@@ -32,7 +32,7 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
     );
   };
   return (
-    <TodoItemContainer>
+    <TodoItemContainer key={id}>
       {/* 완료 버튼 */}
       <Button onClick={toggleItem}>
         {done ? (
