@@ -105,6 +105,7 @@ const City = styled.div`
 const Current = styled.div`
   display: flex;
   flex: 3;
+  align-items: center;
 `;
 
 const Icon = styled.div`
