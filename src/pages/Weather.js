@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import WeatherForecast from "../components/WeatherForecast";
 import {
   WiThunderstorm,
   WiRainMix,
@@ -30,7 +31,7 @@ function Weather() {
     const latitude = event.coords.latitude;
     const longitude = event.coords.longitude;
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=7&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&appid=${API_KEY}`
     );
     const json = await response.json();
     setWeather(json);
@@ -40,24 +41,24 @@ function Weather() {
     alert("fail to get the location");
   };
 
-  const getIcons = () => {
-    const id = parseInt(weather.current.weather[0].id);
+  const getIcons = (id, size) => {
+    const parsedID = parseInt(id);
     const group = id === 800 ? 0 : Math.floor(id / 100);
     switch (group) {
       case 2:
-        return <WiThunderstorm size={ICON_SIZE} />;
+        return <WiThunderstorm size={size} />;
       case 3:
-        return <WiRainMix size={ICON_SIZE} />;
+        return <WiRainMix size={size} />;
       case 5:
-        return <WiRain size={ICON_SIZE} />;
+        return <WiRain size={size} />;
       case 6:
-        return <WiSnowflakeCold size={ICON_SIZE} />;
+        return <WiSnowflakeCold size={size} />;
       case 7:
-        return <WiFog size={ICON_SIZE} />;
+        return <WiFog size={size} />;
       case 0:
-        return <WiDaySunny size={ICON_SIZE} />;
+        return <WiDaySunny size={size} />;
       case 8:
-        return <WiCloudy size={ICON_SIZE} />;
+        return <WiCloudy size={size} />;
     }
   };
 
@@ -65,24 +66,19 @@ function Weather() {
 
   return (
     <div>
-      <h1>Weather Page</h1>
       {weather ? (
         <WeatherContainer>
           <City>{weather.timezone.split("/")[1]}</City>
-          <div style={{ display: "flex" }}>
-            <Icon>{getIcons()}</Icon>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                marginBottom: "20px",
-              }}
-            >
-              <Temp>{(weather.current.temp - 273.15).toFixed(0)}°</Temp>
+          <Current>
+            <Icon>{getIcons(weather.current.weather[0].id, 200)}</Icon>
+            <Info>
+              <Temp>{(weather.current.temp - 273.15).toFixed(1)}°</Temp>
               <Condition>{weather.current.weather[0].main}</Condition>
-            </div>
-          </div>
+            </Info>
+          </Current>
+          <Forecast>
+            <WeatherForecast daily={weather.daily} getIcons={getIcons} />
+          </Forecast>
         </WeatherContainer>
       ) : (
         <div>loading...</div>
@@ -95,20 +91,43 @@ const WeatherContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 90vh;
 `;
 
 const City = styled.div`
-  font-size: 20px;
+  flex: 1;
+  font-size: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+`;
+
+const Current = styled.div`
+  display: flex;
+  flex: 3;
 `;
 
 const Icon = styled.div`
-  margin: -20px 0px -20px -20px;
+  margin: -15px 0px -20px -20px;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Temp = styled.div`
   font-size: 70px;
 `;
 
-const Condition = styled.div``;
+const Condition = styled.div`
+  font-size: 20px;
+  margin-left: 10px;
+`;
+
+const Forecast = styled.div`
+  flex: 2;
+`;
 
 export default Weather;
