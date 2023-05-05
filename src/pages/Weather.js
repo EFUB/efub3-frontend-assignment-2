@@ -68,7 +68,7 @@ function Weather() {
       <h1>Weather Page</h1>
       {weather ? (
         <WeatherContainer>
-          <City>{weather.timezone}</City>
+          <City>{weather.timezone.split("/")[1]}</City>
           <div style={{ display: "flex" }}>
             <Icon>{getIcons()}</Icon>
             <div
