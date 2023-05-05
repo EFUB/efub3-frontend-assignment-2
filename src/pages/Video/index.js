@@ -1,9 +1,12 @@
 import VideoItem from "./Component/videoItem";
 import styled from "styled-components";
-const VideoPage = () => {
+import MusicVideoData from "./Data/MusicVideoData";
+import VideoNav from "./Component/videonav";
+const VideoPage = ({ VideoData }) => {
   return (
     <Wrapper>
-      <VideoItem />
+      <VideoNav />
+      <VideoItem VideoData={VideoData} />
     </Wrapper>
   );
 };

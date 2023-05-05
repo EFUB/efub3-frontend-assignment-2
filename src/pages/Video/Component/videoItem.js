@@ -1,62 +1,35 @@
 import styled from "styled-components";
-
-const VideoItem = () => {
-  const VideoData = [
-    {
-      id: 1,
-      iframe: (
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/Iwdq3NtpeFQ"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      ),
-    },
-    {
-      id: 2,
-      iframe: (
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/d-3cEQ1d1E4"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      ),
-    },
-    {
-      id: 3,
-      iframe: (
-        <iframe
-          width="100%"
-          height="100%"
-          src="https://www.youtube.com/embed/haceXrrm-LU"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      ),
-    },
-  ];
+//VideoItem
+//video의 data를 담은 videoData를 불러옴
+//map을 돌려서 비디오 하나씩 렌더링하는 함수
+const VideoItem = ({ VideoData }) => {
   return VideoData.map((video) => {
-    return <Wrapper>{video.iframe}</Wrapper>;
+    return (
+      <Wrapper>
+        <Video>{video.iframe}</Video>
+        <Title>{video.title}</Title>
+      </Wrapper>
+    );
   });
 };
 
 export default VideoItem;
 
 const Wrapper = styled.div`
-  width: 800px;
-  height: 500px;
+  width: 550px;
   border-radius: 10px;
-  background-color: grey;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+`;
+const Title = styled.div`
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid skyblue;
+  font-weight: 600;
+`;
+
+const Video = styled.div`
+  width: 550px;
+  height: 290px;
 `;

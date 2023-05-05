@@ -15,10 +15,14 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
+//WeatherPage : 날씨 정보 알려주는 페이지
+//외부 날씨 라이브러리(openweathermap)을 사용해서 날씨 정보 불러옴
 const WeatherPage = () => {
   const city = "Seoul";
   const url = `${api.base}weather?q=${city}&appid=${api.key}`;
   const [weather, setWeather] = useState("");
+
+  //url이 바뀔때마다 정보를 불러옴
   useEffect(() => {
     const city = "Seoul";
     const url = `${api.base}weather?q=${city}&appid=${api.key}`;

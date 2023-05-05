@@ -7,6 +7,9 @@ import PhotoPage from "./pages/Photos";
 import VideoPage from "./pages/Video";
 import WeatherPage from "./pages/Weather";
 import Clock from "./components/Clock";
+import MusicVideoData from "./pages/Video/Data/MusicVideoData";
+import HotVideoData from "./pages/Video/Data/HotVideoData";
+import FunVideoData from "./pages/Video/Data/FunVideoData";
 const App = () => {
   return (
     <>
@@ -15,7 +18,19 @@ const App = () => {
       <Routes>
         <Route path="/" element={<TodoPage />} />
         <Route path="/photo" element={<PhotoPage />} />
-        <Route path="/video" element={<VideoPage />} />
+        <Route path="/video" element={<VideoPage VideoData={HotVideoData} />} />
+        <Route
+          path="/video/hot"
+          element={<VideoPage VideoData={HotVideoData} />}
+        />
+        <Route
+          path="/video/music"
+          element={<VideoPage VideoData={MusicVideoData} />}
+        />
+        <Route
+          path="/video/fun"
+          element={<VideoPage VideoData={FunVideoData} />}
+        />
         <Route path="/weather" element={<WeatherPage />} />
         <Route path="*" element={<h1>404 not Found</h1>}></Route>
       </Routes>

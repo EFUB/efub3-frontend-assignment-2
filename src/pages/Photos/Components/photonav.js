@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+
+//photo의 하단 nav바
+//해당 주제를 누르면 keyword=주제명 이라는 쿼리스트링을 포함한 url로 이동함
 const PhotoNav = () => {
   return (
     <Wrapper>

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+
+//공통적으로 위에 보이는 header 컴포넌트
+//navLink를 사용해서 active한 nav의 색상을 보라색으로 지정함.
 const Header = () => {
   return (
     <Navbar>

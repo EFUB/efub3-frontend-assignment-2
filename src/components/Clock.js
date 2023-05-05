@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { HiOutlineClock } from "react-icons/hi";
 
+//시계 기능하는 clock함수
+//new Date()를 처음 state로 지정함
 const Clock = () => {
   const [time, setTime] = useState(new Date());
   useEffect(() => {
-    const id = setInterval(() => {
+    const clockId = setInterval(() => {
       setTime(new Date());
     }, 1000);
-    return () => clearInterval(id);
+    //뒷정리 함수
+    return () => clearInterval(clockId);
   }, []);
   return (
     <div>
@@ -22,7 +25,7 @@ const Clock = () => {
 export default Clock;
 
 const Wrapper = styled.div`
-  background-color: skyblue;
+  background-color: #7bd2e8;
   position: absolute;
   right: 0;
   font-size: 20px;
