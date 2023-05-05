@@ -39,15 +39,6 @@ function Weather() {
   const [weather, setWeather] = useState();
   const [id, setId] = useState();
 
-  const success = (event) => {
-    setLatitude(event.coords.latitude); // 위도
-    setLongitude(event.coords.longitude); // 경도
-  };
-
-  const error = () => {
-    alert("fail to get the location");
-  };
-
   const getWeather = async () => {
     // geolocation 지원할 경우 현재 위치 get
     if (navigator.geolocation) {
@@ -59,6 +50,15 @@ function Weather() {
     const json = await response.json();
     setWeather(json);
     setId(parseInt(json.current.weather[0].id));
+  };
+
+  const success = (event) => {
+    setLatitude(event.coords.latitude); // 위도
+    setLongitude(event.coords.longitude); // 경도
+  };
+
+  const error = () => {
+    alert("fail to get the location");
   };
 
   useEffect(() => {
@@ -88,14 +88,13 @@ function Weather() {
   console.log("____________________________");
   console.log(latitude, longitude);
   console.log(weather);
-  console.log(getIcons());
 
   return (
     <div>
       <h1>Weather Page</h1>
       {weather ? (
         <WeatherContainer>
-          {/* <City>{weather.city.name}</City> */}
+          <City>{weather.timezone}</City>
           <div style={{ display: "flex" }}>
             <Icon>{getIcons()}</Icon>
             <div
