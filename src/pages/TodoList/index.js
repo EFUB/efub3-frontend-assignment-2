@@ -4,7 +4,7 @@ import TodoInsert from "./Components/TodoInsert";
 import TodoTemplate from "./Components/TodoTemplate";
 import styled from "styled-components";
 
-//시계정보를 가져와서 아침/저녁에따라 배경 바꾸기
+//TodoPage : 투두리스트 보여주는 페이지
 const TodoPage = () => {
   const [todos, setTodos] = useState(() => {
     const localtodos = localStorage.getItem("localtodos");

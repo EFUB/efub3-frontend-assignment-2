@@ -6,7 +6,7 @@ import PhotoNav from "./Components/photonav";
 import { useSearchParams } from "react-router-dom";
 const Access_key = "-DlREVLk0SBFSjHjFkao3z8P7GFcakynrEYZZwNUB9k";
 
-//사진을 불러오는 photoPage
+//photoPage : 사진을 주제에 맞게 렌더링하는 페이지
 //외부 라이브러리인 unsplash를 사용하였음. useSearchParams를 사용해 navLink에서 준
 //keyword를 추출하여 해당 keyword에 맞는 사진을 불러옴
 //데이터를 받아올 때 외부 라이브러리인 axios를 사용하였음
