@@ -13,7 +13,7 @@ const TodoTemplateBlock = styled.div`
   margin: 0 auto;
 
   margin-top: 70px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 `;
