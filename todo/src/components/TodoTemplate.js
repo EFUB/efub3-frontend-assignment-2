@@ -7,7 +7,7 @@ const TodoTemplate = ({ children }) => {
 const TodoTemplateBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 32px;
+  padding-left: 40px;
   width: 70%;
 `;
 

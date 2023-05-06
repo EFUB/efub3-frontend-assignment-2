@@ -1,11 +1,11 @@
 import Template from "./components/Template";
 import Head from "./components/Head";
-import SideBar from "./components/SideBar";
-import TodoList from "./components/TodoList";
-import TodoHead from "./components/TodoHead";
-import TodoTemplate from "./components/TodoTemplate";
-import AddTodo from "./components/AddTodo";
+import NavBar from "./components/NavBar";
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import TodoListPage from "./TodoListPage";
+import TodoBoard from "./components/TodoBoard";
+import Intro from "./components/Intro";
 
 function App() {
   const [todo, setTodo] = useState(() => {
@@ -21,12 +21,19 @@ function App() {
     <>
       <Head />
       <Template>
-        <SideBar todoList={todo} />
-        <TodoTemplate>
-          <TodoHead todoList={todo} />
-          <AddTodo todoList={todo} setTodoList={setTodo} />
-          <TodoList todoList={todo} setTodoList={setTodo} />
-        </TodoTemplate>
+        <NavBar todoList={todo} />
+        <Routes>
+          <Route path="/" element={<Intro />}></Route>
+          <Route
+            path="/todolist"
+            element={<TodoListPage todoList={todo} setTodoList={setTodo} />}
+          />
+          <Route
+            path="/todoboard"
+            element={<TodoBoard todoList={todo} setTodoList={setTodo} />}
+          />
+          <Route />
+        </Routes>
       </Template>
     </>
   );
