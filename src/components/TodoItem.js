@@ -82,6 +82,9 @@ const Text = styled.div`
     flex: 1;
     font-size: 20px;
     padding: 0.5em;
+    :hover {
+        text-decoration: underline 1px;
+    }
 `;
 const DeleteButton = styled.button`
     outline: none;
@@ -92,6 +95,9 @@ const DeleteButton = styled.button`
     font-size: 15px;
     padding: 0.5rem 2rem;
     border-radius: 2rem;
+    :hover {
+        text-decoration: underline 1px;
+    }
 `;
 const ToggleButton = styled.button`
     outline: none;
@@ -103,16 +109,22 @@ const ToggleButton = styled.button`
     padding: 0.5rem 2rem;
     border-radius: 2rem;
     margin-right: 0.5rem;
+    :hover {
+        text-decoration: underline 1px;
+    }
 `;
 const EditButton = styled.button`
-outline: none;
-align-items: center;
-justify-content: center;
-border: none;
-text-decoration: none;
-font-size: 15px;
-padding: 0.5rem 2rem;
-border-radius: 2rem;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    :hover {
+        text-decoration: underline 1px;
+    }
 `;
 
 export default TodoItem;

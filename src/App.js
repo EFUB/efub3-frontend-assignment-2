@@ -1,39 +1,51 @@
-import TodoList from './components/TodoList';
-import TodoCreate from './components/TodoCreate';
 import TodoTemplate from './components/TodoTemplate';
-import { useState, useEffect } from "react";
+
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Time from './pages/Time';
+import Home from './pages/Home';
+import GuestBook from './pages/GuestBook';
+
+import { BsClipboard2Check } from "react-icons/bs";
+import { IoTimerOutline } from "react-icons/io5";
+import { AiOutlineUser } from "react-icons/ai";
 import styled from 'styled-components';
 
 function App() {
-  const [todoList, setTodoList] = useState(() => {
-    const localTodoList = localStorage.getItem("localTodoList");
-    return localTodoList ? JSON.parse(localTodoList) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("localTodoList", JSON.stringify(todoList));
-  }, [todoList]);
 
   return (
     <>
       <TodoTemplate>
-        {/* styled-components로 수정 */}
-        <TitleText>Todo List</TitleText>
-        <NoticeText>※수정은 항목을 눌러주세요※</NoticeText>
-        <TodoCreate todoList={todoList} setTodoList={setTodoList}/>
-        <TodoList todoList={todoList} setTodoList={setTodoList}/>
+        <Router>
+          <NavBar>
+            <Link to="/guestbook">
+              <AiOutlineUser className="icon" />
+            </Link>
+            <Link to="/" >
+              <BsClipboard2Check className="icon" />
+            </Link>
+            <Link to="/time">
+              <IoTimerOutline className="icon" />
+            </Link>
+          </NavBar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='/time' element={<Time />} />
+            <Route path="/guestbook" element={<GuestBook />} />
+          </Routes>
+        </Router>
       </TodoTemplate>
     </>
   );
 }
 
-/* styled-components로 수정 */
-const TitleText = styled.h1`
-  text-align: center;
-`;
-const NoticeText = styled.p`
-  text-align: center;
-  margin-top: 0;
+const NavBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  .icon {
+    font-size: 30px;
+    color: black;
+  }
 `;
 
 export default App;
