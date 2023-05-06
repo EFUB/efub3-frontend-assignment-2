@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
@@ -22,12 +23,17 @@ const Editor = ({ onCreate }) => {
 
   return (
     <div className="Editor">
+      <div></div>
       <h2>Todo List</h2>
       <div>
         <input ref={contentInput} value={content} onChange={handleChageState} />
       </div>
       <div>
         <button onClick={handleSubmit}>저장하기</button>
+
+        <Link to="/luck">
+          <button>Luck</button>
+        </Link>
       </div>
     </div>
   );

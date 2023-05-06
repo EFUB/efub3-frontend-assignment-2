@@ -3,6 +3,8 @@ import "./App.css";
 import Editor from "./Editor";
 import List from "./List";
 import React, { useState, useRef, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import Luck from "./Luck";
 
 function App() {
   const [data, setData] = useState(() => {
@@ -14,6 +16,7 @@ function App() {
     localStorage.setItem("localTodoList", JSON.stringify(data));
   }, [data]);
 
+  //투두 리스트용 아이디
   const dataId = useRef(0);
 
   //새로운 일기를 추가하는 함수
@@ -24,11 +27,7 @@ function App() {
       id: dataId.current, // 현재 상태값
       isDone: false,
     };
-
-    dataId.current += 1; //새로운 아이템 설정후에 id 값에 1 더해준다.
     setData([...data, newItem]);
-    //setData는 배열에 새로운 아이템 추가해주고 원래있던 data를 보여준다.
-    //즉 여기서 setData라는 이벤트를 onCreate 함수를 통해 Editor에 넘겨준 것
   };
 
   const onDelete = (targetId) => {
@@ -52,13 +51,21 @@ function App() {
 
   return (
     <div className="App">
-      <Editor onCreate={onCreate} />
-      <List
-        onDelete={onDelete}
-        onEdit={onEdit}
-        list={data}
-        onToggle={onToggle}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={[
+            <Editor onCreate={onCreate} />,
+            <List
+              onDelete={onDelete}
+              onEdit={onEdit}
+              list={data}
+              onToggle={onToggle}
+            />,
+          ]}
+        />
+        <Route path="/luck" element={<Luck />} />
+      </Routes>
     </div>
   );
 }
