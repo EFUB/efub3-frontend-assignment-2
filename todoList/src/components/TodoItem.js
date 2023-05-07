@@ -54,6 +54,7 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
             <MdOutlineEdit />
           </ReDo>
         )}
+
         <Remove>
           <MdDelete onClick={deleteItem} />
         </Remove>
