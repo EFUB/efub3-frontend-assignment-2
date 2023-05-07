@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function TodoItem({todo, index, todoList, setTodoList}) {
   const deleteItem = (index) => {
     const newTodoList = [...todoList];

@@ -8,6 +8,7 @@ function Input(props) {
     onChange={
       (event) => props.onChange(event.target.value)
     }/>);
+
 }
 
 export default Input;

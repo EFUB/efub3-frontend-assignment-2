@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function AddButton({inputValue, setInputValue, todoList, setTodoList}) {
   const addItem = () => {
     setTodoList([
@@ -12,6 +13,7 @@ function AddButton({inputValue, setInputValue, todoList, setTodoList}) {
   };
 
   return (<button onClick={addItem}>추가</button>);
+
 }
 
 export default AddButton;
