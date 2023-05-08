@@ -43,6 +43,9 @@ const InputBox = styled.input`
     padding: 0.5rem;
     border: none;
     border-radius: 1rem;
+    ::placeholder {
+        text-align: center;
+    }
 `;
 const AddButton = styled.button`
     outline: none;
@@ -54,6 +57,9 @@ const AddButton = styled.button`
     padding: 0.5rem 2rem;
     border-radius: 2rem;
     margin-left: 0.5rem;
+    :hover {
+        text-decoration: underline 1px;
+    }
 `;
 
 export default TodoCreate;
