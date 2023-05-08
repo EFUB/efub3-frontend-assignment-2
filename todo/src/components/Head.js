@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import { ReactComponent as LogoIcon } from "../images/logo.svg";
+import { Link } from "react-router-dom";
 
 function Head() {
   return (
     <Header>
-      <Logo />
-      <H1>Todo List</H1>
+      <Link
+        to="/"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Logo />
+        <H1>Todo List</H1>
+      </Link>
     </Header>
   );
 }

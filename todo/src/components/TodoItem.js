@@ -69,10 +69,12 @@ const [Check0, Check1, Check2, Check3] = [
   CheckP1,
   CheckP2,
   CheckP3,
-].map((Component) => styled(Component))`
-  width: 21px;
-  height: 21px;
-`;
+].map(
+  (Component) => styled(Component)`
+    width: 21px;
+    height: 21px;
+  `
+);
 
 const TodoItemBlock = styled.div`
   display: flex;

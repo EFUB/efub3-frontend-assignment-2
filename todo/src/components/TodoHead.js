@@ -10,7 +10,7 @@ function TodoHead({ todoList }) {
   return (
     <>
       <Header>
-        <H1>Today</H1>
+        <H1>Todo List</H1>
         <H2>{todoList.length}</H2>
       </Header>
       <H3>
