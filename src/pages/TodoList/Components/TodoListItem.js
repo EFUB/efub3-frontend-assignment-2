@@ -1,10 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-  MdOutlineCheckBox,
-  MdRemoveCircleOutline,
-  MdModeEdit,
-  MdRemove,
-} from "react-icons/md";
+import { MdOutlineCheckBox, MdModeEdit, MdRemove } from "react-icons/md";
 import styled, { css } from "styled-components";
 
 const TodoListItem = ({ todo, todos, setTodos }) => {
@@ -109,20 +104,18 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
 const TodoListItemBlock = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 25px;
   padding-top: 10px;
-  padding-left: 50px;
-  color: white;
+  padding-left: 130px;
   .checkIcon {
     width: 40px;
     height: 40px;
-    color: white;
     padding-right: 30px;
   }
   .editIcon {
     width: 35px;
     height: 35px;
-    color: skyblue;
+    color: navy;
   }
   .removeIcon {
     width: 40px;

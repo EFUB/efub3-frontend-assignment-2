@@ -49,14 +49,13 @@ const TodoInsertBlock = styled.form`
     width: 430px;
     font-size: 20px;
     border-radius: 5px;
-    border: 0;
+    border: 3px solid gray;
     outline: 0;
     padding-left: 10px;
   }
   button {
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    color: white;
   }
   .plus {
     height: 40px;

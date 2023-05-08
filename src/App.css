@@ -1,9 +1,13 @@
-body {
-  background-image: url(./components/image/4.jpg);
+* {
+  margin: 0px;
+  padding: 0px;
 }
-.title {
-  color: white;
-  font-size: 28px;
-  text-align: center;
-  font-family: "Roboto Slab", serif;
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
