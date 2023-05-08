@@ -54,8 +54,7 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
             <MdOutlineEdit />
           </ReDo>
         )}
-        {/*수정 중이라면 수정 버튼을 눌렀을때 수정을 취소하도록 하고
-        수정 중이 아니라면 수정을 시작하도록 함 */}
+
         <Remove>
           <MdDelete onClick={deleteItem} />
         </Remove>
