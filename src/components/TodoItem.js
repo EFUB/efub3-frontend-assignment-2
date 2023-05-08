@@ -1,11 +1,6 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
-import {
-  FaPen,
-  FaTrash,
-  FaCheckSquare,
-  FaRegCheckSquare,
-} from "react-icons/fa";
+import { FaPen, FaTrash, FaCheckSquare, FaRegSquare } from "react-icons/fa";
 
 const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   const [modifying, setModifying] = useState(false); //수정하는 중인지 여부
@@ -37,13 +32,13 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
     );
   };
   return (
-    <TodoItemContainer>
+    <TodoItemContainer key={id}>
       {/* 완료 버튼 */}
       <Button onClick={toggleItem}>
         {done ? (
           <FaCheckSquare size={iconSize} />
         ) : (
-          <FaRegCheckSquare size={iconSize} />
+          <FaRegSquare size={iconSize} />
         )}
       </Button>
       {modifying ? (

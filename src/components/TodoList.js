@@ -10,6 +10,7 @@ const TodoList = ({ todoList, setTodoList }) => {
             todoList={todoList}
             setTodoList={setTodoList}
             id={item.id}
+            key={item.id}
             text={item.text}
             done={item.done}
           />
