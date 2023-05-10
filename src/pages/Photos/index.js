@@ -1,6 +1,6 @@
 import axios from "axios";
 import PhotoItem from "./Components/photoItem";
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import PhotoNav from "./Components/photonav";
 import { useSearchParams } from "react-router-dom";
@@ -16,16 +16,30 @@ const PhotoPage = () => {
   const key = searchParams.get("keyword");
   let keyword = key;
   const url = `https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=${Access_key}&per_page=12`;
-  axios
-    .get(url)
-    .then((responseData) => {
-      setePhotoData(responseData.data.results);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  // axios
+  //   .get(url)
+  //   .then((responseData) => {
+  //     setePhotoData(responseData.data.results);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   //photoData는 객체를 포함한 배열이므로 map을 사용해서 각각 사진을 photoItem이라는
   //컴포넌트로 렌더링
+
+  //useEffect과 useCallback을 사용해서 렌더링
+  const fetchPhotoData = useCallback(async () => {
+    try {
+      const responseData = await axios.get(url);
+      setePhotoData(responseData.data.results);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  useEffect(() => {
+    fetchPhotoData();
+  }, [fetchPhotoData]);
   return (
     <>
       <PhotoNav />

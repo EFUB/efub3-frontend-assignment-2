@@ -21,8 +21,10 @@ const WeatherPage = () => {
   const city = "Seoul";
   const url = `${api.base}weather?q=${city}&appid=${api.key}`;
   const [weather, setWeather] = useState("");
+  const [loading, setLoading] = useState(true);
 
   //url이 바뀔때마다 정보를 불러옴
+
   useEffect(() => {
     const city = "Seoul";
     const url = `${api.base}weather?q=${city}&appid=${api.key}`;
@@ -32,11 +34,11 @@ const WeatherPage = () => {
         id: data.weather[0].id,
         temperature: data.main.temp,
         main: data.weather[0].main,
-        loading: false,
       });
       console.log(data.id);
+      setLoading(false);
     });
-  }, [url]);
+  }, []);
 
   //날씨아이콘 보여주는 함수
   const selectIcon = () => {
@@ -59,7 +61,9 @@ const WeatherPage = () => {
         return <TiWeatherSunny size="17rem" color="white" />;
     }
   };
-  return (
+  return loading ? (
+    <LoadingImg src="/image/loading.png" />
+  ) : (
     <Wrapper>
       <TextContainer>
         <Text>{city}의 날씨는?</Text>
@@ -106,5 +110,9 @@ const IconContainer = styled.div`
   border-radius: 50%;
   text-align: center;
   margin-left: 100px;
+`;
+
+const LoadingImg = styled.img`
+  width: 100px;
 `;
 // export default Weather;

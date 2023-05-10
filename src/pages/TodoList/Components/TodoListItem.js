@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { MdOutlineCheckBox, MdModeEdit, MdRemove } from "react-icons/md";
 import styled, { css } from "styled-components";
 
@@ -9,19 +9,16 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
   const { text, id } = todo;
   //isChecked에 따라서 체크박스에 checked라는 클래스가 추가되거나 없어짐.
   //체크 상태에 따라 css를 다르게 표시하려고 만듦.
-  const [isChecked, setIsChecked] = useState(todo.Checked);
+  // const [isChecked, setIsChecked] = useState(false);
   //edit상태에 따라 보여지는 항목이 다름. true이면 수정할 수 있는 인풋이 생성됨.
   const [edit, setEdit] = useState(false);
   //위에서 생성된 인풋의 value를 감지하여 text로 저장
   //기본값은 원래 있었던 text값으로 지정
   const [editedText, setEditedText] = useState(todo.text);
 
-  //handleCheck:
+  //onToggle:
   //isChecked라는 상태를 반대로 바꿔주는 함수
   //체크박스를 누르면 실행됨
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
 
   //startEdit :
   //수정아이콘(연필)을 클릭하면 setEdit함수를 통해 edit의 state의 상태가 true가 됨
@@ -38,7 +35,7 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
   //setTodos를 newTodos로 바꿔주고, setEdit속성을 false로 돌려줌
   const endEdit = () => {
     const newTodos = todos.map((todo) => {
-      console.log(id);
+      // console.log(id);
       if (todo.id === id) {
         return { ...todo, text: editedText };
       }
@@ -48,6 +45,18 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
     setEdit(false);
   };
 
+  const onToggle = () => {
+    const newTodos = todos.map((todo) => {
+      console.log(id);
+      if (todo.id === id) {
+        return { ...todo, checked: !todo.checked };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+    // setIsChecked((prev) => !prev);
+    console.log("hi", todo);
+  };
   //handleEditedTextChange :
   //edit의 상태가 true가 되면 나오는 input의 value를 감지하여 editedText의 상태를
   //인풋의 내용으로 바꿔주는 함수
@@ -79,23 +88,16 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
           </button>
         </div>
       ) : (
-        <div className="flex">
-          <div
-            className={`checkbox ${isChecked ? "checked" : ""}`}
-            onClick={handleCheck}
-          >
+        <Wrapper>
+          <TextContainer todo={todo} onClick={onToggle}>
             <MdOutlineCheckBox className="checkIcon" />
-            <div className="text">{text}</div>
-          </div>
-          <div className="icons-container">
-            <div onClick={startEdit}>
-              <MdModeEdit className="editIcon" />
-            </div>
-            <div onClick={remove}>
-              <MdRemove className="removeIcon" />
-            </div>
-          </div>
-        </div>
+            <div>{text}</div>
+          </TextContainer>
+          <IconContainer>
+            <MdModeEdit className="editIcon" onClick={startEdit} />
+            <MdRemove className="removeIcon" onClick={remove} />
+          </IconContainer>
+        </Wrapper>
       )}
     </TodoListItemBlock>
   );
@@ -115,12 +117,12 @@ const TodoListItemBlock = styled.div`
   .editIcon {
     width: 35px;
     height: 35px;
-    color: navy;
+    color: #008c8c;
   }
   .removeIcon {
     width: 40px;
     height: 40px;
-    color: red;
+    color: #ff5675;
     margin-left: 10px;
   }
   .flex {
@@ -138,19 +140,8 @@ const TodoListItemBlock = styled.div`
     flex: 1; //차지할 수 있는 영역 모두 차지
     align-items: center; //중앙 정렬
     display: flex;
-    //체크상태일때 추가될 css
-    &.checked {
-      //체크되었을 때 아이콘 스타일
-      svg {
-        color: grey;
-      }
-      //체크 되었을 때 텍스트 스타일
-      .text {
-        color: grey;
-        text-decoration: line-through;
-      }
-    }
   }
+
   //수정 상태시 나오는 인풋과 수정 버튼
   .editForm {
     display: flex;
@@ -172,4 +163,22 @@ const TodoListItemBlock = styled.div`
   }
 `;
 
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: ${(props) => (props.todo.checked ? "gray" : "black")};
+  text-decoration: ${(props) => (props.todo.checked ? "line-through" : "none")};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 700px;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export default TodoListItem;
