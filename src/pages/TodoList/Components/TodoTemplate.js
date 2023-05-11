@@ -14,6 +14,9 @@ const TodoTemplateBlock = styled.div`
   color: ${(props) => props.fontColor};
   background: url(${(props) => props.bgImage});
 `;
+
+//TodoTemplate : todo의 배경이 되는 컴포넌트
+//모드 전환 버튼에 따라 다른 css속성이 들어가게 함.
 function TodoTemplate({ children }) {
   const [bgImage, setBgImage] = useState("/image/morningBack.jpg");
   const [fontColor, setFontcolor] = useState("#333");

@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import { useMemo } from "react";
 
+//투두리스트 위에 checked 속성에따라 완료 todo, 완료 안한 todo 세줌
 const TodoCount = ({ todos, setTodos }) => {
   console.log(todos);
 
+  //completeCount : 완료한 todo [checked = true] 만 필터링
   // useMemo를 사용해서 todos가 바뀌지 않으면 기존의 값을 그대로 씀
   const completeCount = useMemo(() => {
     return todos.filter((todo) => todo.checked === true).length;
   }, [todos, setTodos]);
 
+  //unCompleteCount : 완료한 todo [checked = true] 만 필터링
+  // useMemo를 사용해서 todos가 바뀌지 않으면 기존의 값을 그대로 씀
   const unCompleteCount = useMemo(() => {
     return todos.filter((todo) => todo.checked === false).length;
   }, [todos, setTodos]);
@@ -29,7 +33,6 @@ const CompleteContainer = styled.div`
   background-color: #32bebe;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   color: white;
   font-size: 30px;
   z-index: 100;

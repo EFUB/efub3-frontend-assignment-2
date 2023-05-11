@@ -1,4 +1,4 @@
-import { NavLink, Routes, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 //video페이지에 있는 공통적인 nav바 생성
