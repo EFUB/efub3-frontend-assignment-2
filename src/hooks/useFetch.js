@@ -20,7 +20,7 @@ const useFetch = (url) => {
         setError(false);
         console.log("axios 실행중");
       })
-      .catch((error) => console.log(error));
+      .catch(setError(true));
   }, [url]);
 
   return [fetchData, loading, error];

@@ -25,7 +25,6 @@ const PhotoPage = () => {
     console.log(data);
     let photoData = data.results;
     setePhotoArr(photoData);
-    console.log(photoArr);
   }, [data]);
 
   //photoData는 객체를 포함한 배열이므로 map을 사용해서 각각 사진을 photoItem이라는

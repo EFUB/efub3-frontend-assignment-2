@@ -7,7 +7,7 @@ import {
   TiWeatherCloudy,
 } from "react-icons/ti";
 
-//날씨 아이콘을 골라주는 함수
+//SelectIcon : 날씨 아이콘을 골라주는 함수
 //index.js에서 weather를 가져와서 맞는 아이콘을 출력함
 const SelectIcon = (weather) => {
   let iconId = weather.id === 800 ? 0 : (parseInt(weather.id) / 100).toFixed(0);
