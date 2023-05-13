@@ -12,16 +12,8 @@ import './App.css';
 
 function App() { 
   // input value와 todolist 정의
-  const [inputValue, setInputValue] = useState('');
-  // 새로고침해도 저장되도록 value값을 localStorage에 저장하기
-  const [todoList, setTodoList] = useState(() => {
-    const localTodoList = localStorage.getItem('todoList');
-    return localTodoList ? JSON.parse(localTodoList) : [];
-  });
-  // todolist 상태를 localStorage에 저장하기 (상태변화시)
-  useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-  }, [todoList]);
+
+
 //네비게이션 바 작성 
   return (
     <div>
