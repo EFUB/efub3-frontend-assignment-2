@@ -1,3 +1,5 @@
+// React.memo()와 useCallback() hook을 사용하여 TodoList 컴포넌트의 성능을 개선
+
 import React from 'react';
 import TodoItem from './TodoItem';
 

@@ -1,17 +1,18 @@
-import React from 'react';
+// TestButton 컴포넌트에 React.memo를 사용하여, count 변수가 변경되지 않았을 경우 다시 렌더링하지 않도록 최적화
+import React, {useState} from 'react';
 
-function AddButton({inputValue, setInputValue, todoList, setTodoList}) {
-  const addItem = () => {
-    setTodoList([
-      ...todoList, {
-        text: inputValue,
-        completed: false
-      }
-    ]);
-    setInputValue('');
+function TestButton() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
   };
 
-  return (<button onClick={addItem}>추가</button>);
+  return (
+    <button onClick={handleClick}>
+      Test Button ({count})
+    </button>
+  );
 }
 
-export default AddButton;
+export default TestButton;
