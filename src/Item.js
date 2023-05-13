@@ -9,7 +9,7 @@ const Item = ({ content, id, onDelete, onEdit, onToggle, item }) => {
 
   const handleRemove = () => {
     console.log(id);
-    if (window.confirm(`${id + 1} 번째 일기를 정말 삭제하시겠습니까?`)) {
+    if (window.confirm(`${id + 1} 번째 리스트를 정말 삭제하시겠습니까?`)) {
       onDelete(id);
     }
   };
@@ -25,7 +25,7 @@ const Item = ({ content, id, onDelete, onEdit, onToggle, item }) => {
       return;
     }
 
-    if (window.confirm(`${id + 1} 번째 일기를 수정하시겠습니까?`)) {
+    if (window.confirm(`${id + 1} 번째 리스트를 수정하시겠습니까?`)) {
       onEdit(id, localContent);
       toggleIsEdit();
     }
@@ -63,8 +63,8 @@ const Item = ({ content, id, onDelete, onEdit, onToggle, item }) => {
       ) : (
         <>
           {" "}
-          <button onClick={handleRemove}>삭제하기</button>
-          <button onClick={toggleIsEdit}>수정하기</button>
+          <button onClick={handleRemove}>삭제</button>
+          <button onClick={toggleIsEdit}>수정</button>
         </>
       )}
 
@@ -73,4 +73,4 @@ const Item = ({ content, id, onDelete, onEdit, onToggle, item }) => {
   );
 };
 
-export default Item;
+export default React.memo(Item);
