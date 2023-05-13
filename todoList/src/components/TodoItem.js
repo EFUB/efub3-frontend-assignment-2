@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete, MdOutlineEdit } from "react-icons/md";
 
@@ -7,16 +7,16 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
   const [editText, setEditText] = useState("");
 
   //아이템 삭제
-  const deleteItem = useCallback(() => {
+  const deleteItem = () => {
     setTodoList((todoList) => todoList.filter((item) => item.id !== id));
-  }, [setTodoList, id]);
+  };
 
   //아이템 완료 표시
-  const toggleItem = useCallback(() => {
+  const toggleItem = () => {
     setTodoList(
       todoList.map((item) => (item.id === id ? { ...item, done: !done } : item))
     );
-  }, [setTodoList, todoList, id, done]);
+  };
 
   //아이템 수정 시작
   const editToDoStart = (id, text) => {
@@ -54,7 +54,6 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
             <MdOutlineEdit />
           </ReDo>
         )}
-
         <Remove>
           <MdDelete onClick={deleteItem} />
         </Remove>
