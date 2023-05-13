@@ -1,36 +1,13 @@
-import { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ReactComponent as CloseIcon } from "../images/close.svg";
+import useUpdateTodo from "../custom-hook/useUpdateTodo";
 
 function UpdateTodo({ id, setActiveItem, todoList, setTodoList }) {
-  const [editText, setEditText] = useState("");
+  const { editText, handleChange, handleSubmit, deleteTodo } = useUpdateTodo();
 
   const closeModal = () => {
     setActiveItem(-1);
-  };
-
-  const deleteTodo = () => {
-    setTodoList(todoList.filter((e) => e.id !== id));
-    closeModal();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editText) {
-      const newTodoList = todoList.map((item) => ({
-        ...item,
-        text: item.id === id ? editText : item.text,
-      }));
-      setTodoList(newTodoList);
-      closeModal();
-      setEditText("");
-    } else {
-      alert("수정할 내용을 입력해주세요!");
-    }
-  };
-
-  const handleChange = (e) => {
-    setEditText(e.target.value);
   };
 
   return (
@@ -42,7 +19,11 @@ function UpdateTodo({ id, setActiveItem, todoList, setTodoList }) {
         </Head>
         <h3>Current Todo : </h3>
         <CurrentTodo>{todoList.find((e) => e.id === id)?.text}</CurrentTodo>
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={(e) =>
+            handleSubmit(e, id, todoList, setTodoList, closeModal)
+          }
+        >
           <h3>Edit Todo :</h3>
           <Input
             placeholder="새로운 일정을 입력하세요."
@@ -50,7 +31,10 @@ function UpdateTodo({ id, setActiveItem, todoList, setTodoList }) {
             value={editText}
           ></Input>
           <BtnContainer>
-            <DeleteBtn onClick={deleteTodo} type="button">
+            <DeleteBtn
+              onClick={() => deleteTodo(id, todoList, setTodoList, closeModal)}
+              type="button"
+            >
               Delete Task
             </DeleteBtn>
             <SaveBtn>Save Changes</SaveBtn>
@@ -155,4 +139,4 @@ const Input = styled.input`
   outline: none;
 `;
 
-export default UpdateTodo;
+export default React.memo(UpdateTodo);

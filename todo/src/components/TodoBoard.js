@@ -10,6 +10,7 @@ const getItems = (todoList) => {
   return todoList.map((item, i) => ({
     id: `item-${i}-${item.id}`,
     content: item.text,
+    done: item.done,
   }));
 };
 
@@ -95,9 +96,11 @@ const TodoBoard = ({ todoList, setTodoList }) => {
     if (!destination) {
       return;
     }
-    const sInd = +source.droppableId;
-    const dInd = +destination.droppableId;
+    const sInd = +source.droppableId; // 원래 열 ex. 0
+    const dInd = +destination.droppableId; // 이동할 열 ex. 1
 
+    // 원래 열과 이동할 열이 같은 경우 행 정렬(redorder), 다른 경우 열 이동(move)
+    // 열 간에 이동하면 done 속성 반대로 ! 만들기(todoList에 반영하기)
     if (sInd === dInd) {
       const items = reorder(state[sInd], source.index, destination.index);
       const newState = [...state];
@@ -217,4 +220,4 @@ const Status = styled.span`
   display: flex;
 `;
 
-export default TodoBoard;
+export default React.memo(TodoBoard);

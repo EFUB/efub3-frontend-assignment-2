@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { ReactComponent as LogoIcon } from "../images/logo.svg";
 import { Link } from "react-router-dom";
+import React from "react";
 
 function Head() {
   return (
@@ -39,4 +40,4 @@ const H1 = styled.h1`
   font-size: 20px;
 `;
 
-export default Head;
+export default React.memo(Head);

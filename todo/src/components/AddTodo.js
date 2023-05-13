@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { ReactComponent as Plus } from "../images/plus.svg";
+import React from "react";
 
 const AddTodo = ({ todoList, setTodoList }) => {
   const [text, setText] = useState("");
@@ -132,4 +133,4 @@ const Input = styled.input`
   color: #565656;
 `;
 
-export default AddTodo;
+export default React.memo(AddTodo);
