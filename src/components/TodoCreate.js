@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoCreate = ({ todoList, setTodoList }) => {
@@ -62,4 +62,4 @@ const AddButton = styled.button`
     }
 `;
 
-export default TodoCreate;
+export default React.memo(TodoCreate);

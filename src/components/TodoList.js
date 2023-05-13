@@ -1,3 +1,4 @@
+import React from "react";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
 
@@ -27,4 +28,4 @@ const TodoListBlock = styled.div`
     border-top: 1px solid darkgray;
 `;
 
-export default TodoList;
+export default React.memo(TodoList);

@@ -1,10 +1,11 @@
 import TodoList from '../components/TodoList';
 import TodoCreate from '../components/TodoCreate';
+import TodoText from '../components/TodoText';
 import { useState, useEffect } from "react";
 import styled from 'styled-components';
 
 const Home = () => {
-    const [todoList, setTodoList] = useState(() => {
+      const [todoList, setTodoList] = useState(() => {
         const localTodoList = localStorage.getItem("localTodoList");
         return localTodoList ? JSON.parse(localTodoList) : [];
       });
@@ -12,24 +13,39 @@ const Home = () => {
       useEffect(() => {
         localStorage.setItem("localTodoList", JSON.stringify(todoList));
       }, [todoList]);
+
+      const [count, setCount] = useState(0);
+
+      const clickBtnstate = () => {
+        setCount((count) => count + 1);
+      };
     
-    return (
+      return (
         <>
-            {/* styled-components로 수정 */}
-            <TitleText>Todo List</TitleText>
-            <NoticeText>※수정은 항목을 눌러주세요※</NoticeText>
-            <TodoCreate todoList={todoList} setTodoList={setTodoList}/>
-            <TodoList todoList={todoList} setTodoList={setTodoList}/>
+          <CountButton onClick={clickBtnstate}>{count}</CountButton>
+          {/* TodoText 컴포넌트로 수정 */}
+          <TodoText />
+          <TodoCreate todoList={todoList} setTodoList={setTodoList}/>
+          <TodoList todoList={todoList} setTodoList={setTodoList}/>
         </>
-    );
+      );
 };
 
-const TitleText = styled.h1`
-  text-align: center;
-`;
-const NoticeText = styled.p`
-  text-align: center;
-  margin-top: 0;
+const CountButton = styled.button`
+  width: 50px;
+  display: flex;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  margin: auto;
+  :hover {
+    text-decoration: underline 1px;
+  }
 `;
 
 export default Home;
