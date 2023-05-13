@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete, MdOutlineEdit } from "react-icons/md";
 
@@ -7,16 +7,16 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
   const [editText, setEditText] = useState("");
 
   //아이템 삭제
-  const deleteItem = () => {
+  const deleteItem = useCallback(() => {
     setTodoList((todoList) => todoList.filter((item) => item.id !== id));
-  };
+  }, [setTodoList, id]);
 
   //아이템 완료 표시
-  const toggleItem = () => {
+  const toggleItem = useCallback(() => {
     setTodoList(
       todoList.map((item) => (item.id === id ? { ...item, done: !done } : item))
     );
-  };
+  }, [setTodoList, todoList, id, done]);
 
   //아이템 수정 시작
   const editToDoStart = (id, text) => {
@@ -165,4 +165,4 @@ const CheckBox = styled.div`
   transition: 0.125s all ease-in;
 `;
 
-export default TodoItem;
+export default React.memo(TodoItem);

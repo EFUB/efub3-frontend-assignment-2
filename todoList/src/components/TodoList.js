@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
@@ -28,4 +28,4 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
-export default TodoList;
+export default React.memo(TodoList);

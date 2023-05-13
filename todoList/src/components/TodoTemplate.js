@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const TodoTemplateBlock = styled.div`
   width: 550px;
-  height: 750px;
+  height: 770px;
 
   position: relative;
   background: white;

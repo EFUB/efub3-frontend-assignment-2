@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import TodoTemplate from "../components/TodoTemplate";
@@ -23,11 +24,25 @@ const ShowTodoList = () => {
     localStorage.setItem("localTodoList", JSON.stringify(todoList));
   }, [todoList]);
 
+  //리렌더링 되는 컴포넌트들을 확인하기 위한 버튼
+  const [num, setNum] = useState(0);
+  const changeNum = () => {
+    setNum(num + 1);
+  };
+
+  const TestButton = styled.button`
+    background-color: #bbe6e4;
+    height: 2em;
+    border: none;
+    color: #6c757d;
+  `;
+
   //NavBar를 제외한 컴포넌트들만 리턴
   return (
     <>
       <GlobalStyle />
       <TodoTemplate>
+        <TestButton onClick={changeNum}>Test Button</TestButton>
         <TodoHead todoLength={todoList.length} />
         <TodoList todoList={todoList} setTodoList={setTodoList} />
         <TodoCreate todoList={todoList} setTodoList={setTodoList} />
@@ -36,4 +51,4 @@ const ShowTodoList = () => {
   );
 };
 
-export default ShowTodoList;
+export default React.memo(ShowTodoList);
