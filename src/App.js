@@ -3,6 +3,7 @@ import './App.css';
 import Input from './components/Input';
 import TodoList from './components/TodoList';
 import AddButton from './components/AddButton';
+import TestButton from './components/TestButton'; // TestButton 컴포넌트를 불러옵니다.
 import {Route, Routes, NavLink} from 'react-router-dom';
 import Movie from './pages/Movie';
 import Time from './pages/Time';
@@ -18,6 +19,7 @@ function App() {
     <div>
       <div className="navbar">
       <div className="nav-link">
+{/* 테스트버튼입니다 */}
         <NavLink to="/" activeClassName="active" className="nav-link">
           HOME
         </NavLink>
@@ -39,6 +41,7 @@ function App() {
           <>
             {/* 추가, 삭제, 수정, todolist  */}
             <Input value={inputValue} onChange={setInputValue} />
+            <TestButton /> {/* TestButton 컴포넌트를 사용합니다. */}
             <AddButton
               inputValue={inputValue}
               setInputValue={setInputValue}
