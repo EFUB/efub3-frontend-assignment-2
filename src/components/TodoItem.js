@@ -1,28 +1,34 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
-import { FaPen, FaTrash, FaCheckSquare, FaRegSquare } from "react-icons/fa";
+import { FaPen, FaTrash } from "react-icons/fa";
+import ToggleButton from "./buttons/ToggleButton";
+import DeleteButton from "./buttons/DeleteButton";
+import ModifyButton from "./buttons/ModifyButton";
 
 const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   const [modifying, setModifying] = useState(false); //수정하는 중인지 여부
   //투두 완료 토글
-  const toggleItem = () => {
+  const toggleItem = useCallback(() => {
     setTodoList(
       todoList.map((item) => (item.id === id ? { ...item, done: !done } : item))
     );
-  };
+  }, [todoList]);
   //투두 삭제
-  const deleteItem = () => {
+  const deleteItem = useCallback(() => {
     setTodoList(
       todoList.filter((item) => {
         return item.id !== id;
       })
     );
-  };
+  }, [todoList]);
   //투두 수정 토글
-  const toggleModify = (e) => {
-    e.preventDefault();
-    setModifying((modifying) => !modifying);
-  };
+  const toggleModify = useCallback(
+    (e) => {
+      e.preventDefault();
+      setModifying((modifying) => !modifying);
+    },
+    [modifying]
+  );
   //투두 수정
   const modifyItem = (e) => {
     setTodoList(
@@ -36,13 +42,7 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
   return (
     <TodoItemContainer key={id}>
       {/* 완료 버튼 */}
-      <Button onClick={toggleItem}>
-        {done ? (
-          <FaCheckSquare size={iconSize} />
-        ) : (
-          <FaRegSquare size={iconSize} />
-        )}
-      </Button>
+      <ToggleButton toggleItem={toggleItem} done={done} iconSize={iconSize} />
       {modifying ? (
         //수정 폼
         <form style={{ display: "inline" }} onSubmit={toggleModify}>
@@ -58,13 +58,9 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
         <Text done={done}>{text}</Text>
       )}
       {/* 수정 버튼 */}
-      <Button onClick={toggleModify}>
-        <FaPen size={iconSize} />
-      </Button>
+      <ModifyButton toggleModify={toggleModify} iconSize={iconSize} />
       {/* 삭제 버튼 */}
-      <Button onClick={deleteItem}>
-        <FaTrash size={iconSize} />
-      </Button>
+      <DeleteButton deleteItem={deleteItem} iconSize={iconSize} />
     </TodoItemContainer>
   );
 };
