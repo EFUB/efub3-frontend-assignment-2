@@ -31,6 +31,8 @@ const TodoItem = ({ todoList, setTodoList, id, text, done }) => {
       )
     );
   };
+  console.log("TodoItem 렌더링");
+
   return (
     <TodoItemContainer key={id}>
       {/* 완료 버튼 */}

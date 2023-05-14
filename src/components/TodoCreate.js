@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -15,6 +15,7 @@ const TodoCreate = ({ todoList, setTodoList }) => {
   const handleChange = (e) => {
     setText(e.target.value);
   };
+  console.log("TodoCreate 렌더링");
   return (
     <Form onSubmit={addItem}>
       <Input
