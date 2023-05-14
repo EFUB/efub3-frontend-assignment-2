@@ -15,12 +15,4 @@ const ToggleButton = ({ toggleItem, done, iconSize }) => {
   );
 };
 
-const Button = styled.button`
-  background-color: white;
-  border: none;
-  padding-top: 10px;
-  padding-left: 0;
-  padding-right: 0;
-`;
-
 export default React.memo(ToggleButton);

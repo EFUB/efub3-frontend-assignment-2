@@ -12,7 +12,6 @@ function Todo() {
   useEffect(() => {
     localStorage.setItem("localTodoList", JSON.stringify(todoList));
   }, [todoList]);
-  console.log("Todo 렌더링");
   return (
     <RootContainer className="Todo">
       <Container>

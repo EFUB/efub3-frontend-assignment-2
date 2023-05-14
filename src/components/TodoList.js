@@ -2,7 +2,6 @@ import TodoItem from "./TodoItem";
 import styled from "styled-components";
 
 const TodoList = ({ todoList, setTodoList }) => {
-  console.log("TodoList 렌더링");
   return (
     <TodoListContainer>
       {todoList.map((item) => {

@@ -15,7 +15,6 @@ const TodoCreate = ({ todoList, setTodoList }) => {
   const handleChange = (e) => {
     setText(e.target.value);
   };
-  console.log("TodoCreate 렌더링");
   return (
     <Form onSubmit={addItem}>
       <Input
