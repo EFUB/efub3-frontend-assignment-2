@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState } from "react";
 
 //새로운 todo를 입력 받음
 const TodoCreate = ({ todoList, setTodoList }) => {
   const [text, setText] = useState("");
   const [id, setId] = useState(Date.now()); //id는 고유한 값을 가져야하므로 Date로 설정
+
   const newItem = { id: id, text: text, done: false };
 
   const addItem = (e) => {
@@ -60,9 +61,9 @@ const AddButton = styled.button`
 const TodoForm = styled.form`
   background: #f8f9fa;
   padding-left: 32px;
-  padding-top: 45px;
+  padding-top: 30px;
   padding-right: 32px;
-  padding-bottom: 45px;
+  padding-bottom: 30px;
 
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -73,7 +74,7 @@ const TodoForm = styled.form`
 `;
 
 const InputBox = styled.input`
-  padding: 12px;
+  padding: 10px;
   border-radius: 4px;
   border: 3px solid #bbe6e4;
   width: 80%;
@@ -82,4 +83,4 @@ const InputBox = styled.input`
   box-sizing: border-box;
 `;
 
-export default TodoCreate;
+export default React.memo(TodoCreate);

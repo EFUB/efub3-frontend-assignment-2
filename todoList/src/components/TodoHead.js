@@ -31,7 +31,7 @@ const HeadBlockWrapper = styled.div`
   align-items: center;
 `;
 const TodoHeadBlock = styled.div`
-  padding-top: 40px;
+  padding-top: 15px;
   padding-left: 32px;
   padding-right: 32px;
   padding-bottom: 24px;
@@ -51,9 +51,8 @@ const TodoHeadBlock = styled.div`
     color: #bbe6e4;
     font-size: 25px;
     margin-top: 22px;
-
     font-weight: bold;
   }
 `;
 
-export default TodoHead;
+export default React.memo(TodoHead);

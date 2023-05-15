@@ -28,4 +28,4 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
-export default TodoList;
+export default React.memo(TodoList);

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete, MdOutlineEdit } from "react-icons/md";
 
@@ -54,7 +54,6 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
             <MdOutlineEdit />
           </ReDo>
         )}
-
         <Remove>
           <MdDelete onClick={deleteItem} />
         </Remove>
@@ -166,4 +165,4 @@ const CheckBox = styled.div`
   transition: 0.125s all ease-in;
 `;
 
-export default TodoItem;
+export default React.memo(TodoItem);
