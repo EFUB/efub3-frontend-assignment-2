@@ -14,6 +14,10 @@ textarea {
   padding: 10px;
 }
 
+.Editor .editor-lucky {
+  background-color: rgb(159, 221, 255);
+}
+
 .Editor button {
   width: 200px;
   padding: 10px;
@@ -55,7 +59,7 @@ textarea {
 }
 
 .Item .done {
-  color: gray;
+  color: rgb(189, 189, 189);
 }
 
 .Item button {

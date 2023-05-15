@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 const Luck = () => {
   const [luck, setLuck] = useState("오늘의 운세는?");
-  const [song, setSong] = useState("오늘의 노래는?");
+  const [song, setSong] = useState("");
   const randomLuck = () => {
     const ranNum = Math.floor(Math.random() * 5);
     setLuck(luckybox[ranNum]);
@@ -148,11 +148,11 @@ const Luck = () => {
         </div>
 
         <Link to="/">
-          <button> Back to TodoList</button>
+          <button> 되돌아가기</button>
         </Link>
       </div>
     </div>
   );
 };
 
-export default Luck;
+export default React.memo(Luck);

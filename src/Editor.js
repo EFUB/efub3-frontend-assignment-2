@@ -1,8 +1,13 @@
 import React, { useState, useRef } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    console.log("에디터 업데이트");
+  }, []);
 
   const contentInput = useRef();
   //작성하는 곳에 접근 할 수 있다.
@@ -17,7 +22,7 @@ const Editor = ({ onCreate }) => {
       return;
     }
     onCreate(content);
-    alert("저장 성공");
+    // alert("저장 성공");
     setContent("");
   };
 
@@ -32,11 +37,11 @@ const Editor = ({ onCreate }) => {
         <button onClick={handleSubmit}>저장하기</button>
 
         <Link to="/luck">
-          <button>Luck</button>
+          <button className="editor-lucky">Luck</button>
         </Link>
       </div>
     </div>
   );
 };
 
-export default Editor;
+export default React.memo(Editor);
