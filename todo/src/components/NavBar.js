@@ -7,7 +7,7 @@ import { ReactComponent as ListIcon } from "../images/toc.svg";
 import { ReactComponent as Search } from "../images/search.svg";
 import { ReactComponent as BoardIcon } from "../images/board.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useMemo } from "react";
 
 function NavBar({ todoList }) {
   const LinkStyle = {
@@ -16,6 +16,15 @@ function NavBar({ todoList }) {
     marginBottom: "10px",
     color: "#565656",
   };
+
+  const counts = useMemo(
+    () => ({
+      1: todoList.filter((item) => item.priority === 1).length,
+      2: todoList.filter((item) => item.priority === 2).length,
+      3: todoList.filter((item) => item.priority === 3).length,
+    }),
+    [todoList]
+  );
 
   return (
     <SideBarBlock>
@@ -53,21 +62,21 @@ function NavBar({ todoList }) {
           <Red />
           <Btn>Priority 1</Btn>
         </Container>
-        <Span>{todoList.filter((item) => item.priority === 1).length}</Span>
+        <Span>{counts[1]}</Span>
       </Div>
       <Div>
         <Container>
           <Yellow />
           <Btn>Priority 2</Btn>
         </Container>
-        <Span>{todoList.filter((item) => item.priority === 2).length}</Span>
+        <Span>{counts[2]}</Span>
       </Div>
       <Div>
         <Container>
           <Green />
           <Btn>Priority 3</Btn>
         </Container>
-        <Span>{todoList.filter((item) => item.priority === 3).length}</Span>
+        <Span>{counts[3]}</Span>
       </Div>
     </SideBarBlock>
   );
@@ -166,4 +175,4 @@ const SideBarBlock = styled.div`
   color: #565656;
 `;
 
-export default NavBar;
+export default React.memo(NavBar);

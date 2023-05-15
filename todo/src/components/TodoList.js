@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
 import UpdateTodo from "./UpdateTodo";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const TodoList = ({ todoList, setTodoList }) => {
   const [activeItem, setActiveItem] = useState(-1);
@@ -38,4 +38,4 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
-export default TodoList;
+export default React.memo(TodoList);

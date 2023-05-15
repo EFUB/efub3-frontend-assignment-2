@@ -8,6 +8,7 @@ import { ReactComponent as CheckP0 } from "../images/check.svg";
 import { ReactComponent as CheckP1 } from "../images/red_check.svg";
 import { ReactComponent as CheckP2 } from "../images/yellow_check.svg";
 import { ReactComponent as CheckP3 } from "../images/green_check.svg";
+import React from "react";
 
 const TodoItem = ({
   text,
@@ -115,4 +116,4 @@ const DetailBtn = styled.button`
   cursor: pointer;
 `;
 
-export default TodoItem;
+export default React.memo(TodoItem);

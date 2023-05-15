@@ -17,9 +17,17 @@ function App() {
     localStorage.setItem("localTodo", JSON.stringify(todo));
   }, [todo]);
 
+  const [test, setTest] = useState(0);
+
+  const Test = () => {
+    setTest(test + 1);
+  };
+
   return (
     <>
       <Head />
+      <button onClick={Test}>test</button>
+      {test}
       <Template>
         <NavBar todoList={todo} />
         <Routes>

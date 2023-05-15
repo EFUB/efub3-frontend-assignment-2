@@ -46,4 +46,4 @@ const H3 = styled.h3`
   margin-bottom: 30px;
 `;
 
-export default TodoHead;
+export default React.memo(TodoHead);
