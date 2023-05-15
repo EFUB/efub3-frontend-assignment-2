@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const GuestItem = ({ text, setGuestList, id, pw, name }) => {
     const [isDeleting, setIsDeleting] = useState(false);
@@ -44,6 +44,9 @@ const GuestItem = ({ text, setGuestList, id, pw, name }) => {
     </>
    );
 };
+
+// 다른 아이템이 렌더링되지 않도록 true를 반환하는 comp 함수
+const comp = () => (true);
 
 const PwForm = styled.form`
     flex: 1;
@@ -103,4 +106,4 @@ const CheckButton = styled.button`
     }
 `;
 
-export default GuestItem;
+export default React.memo(GuestItem, comp);

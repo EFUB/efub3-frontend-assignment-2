@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
+// 리렌더링을 막기 위해 todoList props 삭제
+const TodoItem = ({ text, setTodoList, id, done }) => {
     // 아이템 수정을 위한 state
     const [isEditing, setIsEditing] = useState(false);
     const [editedItem, setEditedItem] = useState(text);
@@ -10,16 +11,18 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
         setTodoList((todoList) => todoList.filter((item) => item.id !== id));
     };
 
+    // setTodoList 매개변수 수정
     const toggleItem = () => {
-        setTodoList(
+        setTodoList((todoList) =>
             todoList.map((item) => (item.id === id ? { ...item, done: !done } : item))
         );
     };
 
     // 아이템 수정 기능
+    // setTodoList 매개변수 수정
     const handleEdit = (e) => {
         e.preventDefault();
-        setTodoList(
+        setTodoList((todoList) =>
             todoList.map((item) => (item.id === id ? { ...item, text: editedItem } : item))
         );
         setIsEditing(false);
@@ -54,6 +57,17 @@ const TodoItem = ({ text, todoList, setTodoList, id, done }) => {
     </>
    );
 };
+
+// prev와 next를 비교하는 함수
+const comp = (prev, next) => {
+    if (prev.id === next.id) {  // id가 같은 경우
+        if (prev.text !== next.text || prev.done !== next.done) {
+            // text 또는 done의 value가 다른 경우에만 렌더링
+            return false;
+        }
+    }
+    return true;
+}
 
 const TodoForm = styled.form`
     flex: 1;
@@ -127,4 +141,4 @@ const EditButton = styled.button`
     }
 `;
 
-export default TodoItem;
+export default React.memo(TodoItem, comp);

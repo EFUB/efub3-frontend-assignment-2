@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // 타이머 남은 초 반환하는 함수
@@ -111,4 +111,4 @@ const StartButton = styled.button`
     }
 `;
 
-export default Timer;
+export default React.memo(Timer);
