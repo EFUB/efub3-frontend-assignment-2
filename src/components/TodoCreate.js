@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FaRegPlusSquare } from "react-icons/fa";
 import styled from "styled-components";
 

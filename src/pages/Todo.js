@@ -1,6 +1,7 @@
+import TodoTitle from "../components/TodoTitle";
 import TodoList from "../components/TodoList";
 import TodoCreate from "../components/TodoCreate";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 function Todo() {
@@ -14,7 +15,7 @@ function Todo() {
   return (
     <RootContainer className="Todo">
       <Container>
-        <Text>Jamie's Todo</Text>
+        <TodoTitle />
         <TodoCreate todoList={todoList} setTodoList={setTodoList} />
         <TodoList todoList={todoList} setTodoList={setTodoList} />
       </Container>
@@ -36,10 +37,6 @@ const Container = styled.div`
   margin-top: 70px;
   border: 1px grey solid;
   border-radius: 30px;
-`;
-
-const Text = styled.div`
-  font-size: 50px;
 `;
 
 export default Todo;
