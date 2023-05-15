@@ -1,44 +1,30 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { MdOutlineCheckBox, MdModeEdit, MdRemove } from "react-icons/md";
 import styled, { css } from "styled-components";
 
+//TodoListItem : todo들을 개별로 하나씩 렌더링 해주는 함수
 const TodoListItem = ({ todo, todos, setTodos }) => {
-  //return 문을 쓰지 않고 export하면 에러남.
-  //디스트럭쳐 문법, id는 안보여줘도 됨.
-  //todo로 받아온 객체에서 text, id를 할당
+  //받아온 todo에서 text와 id를 선언
   const { text, id } = todo;
-  //isChecked에 따라서 체크박스에 checked라는 클래스가 추가되거나 없어짐.
-  //체크 상태에 따라 css를 다르게 표시하려고 만듦.
-  const [isChecked, setIsChecked] = useState(todo.Checked);
-  //edit상태에 따라 보여지는 항목이 다름. true이면 수정할 수 있는 인풋이 생성됨.
+  //해당 todo가 수정상태인지 판단
   const [edit, setEdit] = useState(false);
-  //위에서 생성된 인풋의 value를 감지하여 text로 저장
-  //기본값은 원래 있었던 text값으로 지정
+  //수정할 text를 넣는 함수. 기본값으로 해당 todo의 text가 들어있다.
   const [editedText, setEditedText] = useState(todo.text);
 
-  //handleCheck:
-  //isChecked라는 상태를 반대로 바꿔주는 함수
-  //체크박스를 누르면 실행됨
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
-
-  //startEdit :
+  //onClickEditOn :
   //수정아이콘(연필)을 클릭하면 setEdit함수를 통해 edit의 state의 상태가 true가 됨
   //edit의 상태에 따라 보여지는 태그가 달라짐 (true일 경우 input, false일 경우 원래 태그)
-
-  const startEdit = () => {
+  const onClickEditOn = () => {
     setEdit(true);
   };
 
-  //endEdit :
+  //onClickEditOff :
   //수정한 내용으로 바꿔주는 함수(수정버튼을 누르면 동작)
   //todo의 id가 해당 id와 같으면 text를 editedText로 바꿔줌.
   //text를 제외한 나머지 속성은  스프레드 문법으로 가져옴
   //setTodos를 newTodos로 바꿔주고, setEdit속성을 false로 돌려줌
-  const endEdit = () => {
+  const onClickEditOff = () => {
     const newTodos = todos.map((todo) => {
-      console.log(id);
       if (todo.id === id) {
         return { ...todo, text: editedText };
       }
@@ -48,6 +34,19 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
     setEdit(false);
   };
 
+  //onToggle: 체크박스를 클릭하면 해당 todo의 checked 속성을 반대로 바꿔줌
+  const onToggle = () => {
+    const newTodos = todos.map((todo) => {
+      console.log(id);
+      if (todo.id === id) {
+        return { ...todo, checked: !todo.checked };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+    console.log("hi", todo);
+  };
+
   //handleEditedTextChange :
   //edit의 상태가 true가 되면 나오는 input의 value를 감지하여 editedText의 상태를
   //인풋의 내용으로 바꿔주는 함수
@@ -55,18 +54,17 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
     setEditedText(e.target.value);
   };
 
-  //remove :
+  //onClickRemove :
   //각 아이템의 삭제 버튼을 누르면 현재 remove를 누른 아이템의 id와 다른 아이템
   //즉, 지우려는 아이템을 제외한 모든 아이템들을 반환하여 setTodos에 넣어주는 함수임
-  const remove = (e) => {
+  const onClickRemove = (e) => {
     setTodos(todos.filter((item) => item.id !== id));
   };
 
   //리턴문
-  //edit의 state가 true/false인지에 따라서 다른 태그가 보이게 함
-  //삼항 연산자 사용
   return (
     <TodoListItemBlock>
+      {/*수정상태(edit = true)일때 input과 수정버튼이 나오게 함*/}
       {edit ? (
         <div className="editForm">
           <input
@@ -74,28 +72,22 @@ const TodoListItem = ({ todo, todos, setTodos }) => {
             value={editedText}
             onChange={handleEditedTextChange}
           />
-          <button onClick={endEdit}>
+          <button onClick={onClickEditOff}>
             <MdModeEdit className="editIcon" />
           </button>
         </div>
       ) : (
-        <div className="flex">
-          <div
-            className={`checkbox ${isChecked ? "checked" : ""}`}
-            onClick={handleCheck}
-          >
+        <Wrapper>
+          {/*수정상태가 아닐때는 일반 todo가 버튼과 함께 렌더링*/}
+          <TextContainer todo={todo} onClick={onToggle}>
             <MdOutlineCheckBox className="checkIcon" />
-            <div className="text">{text}</div>
-          </div>
-          <div className="icons-container">
-            <div onClick={startEdit}>
-              <MdModeEdit className="editIcon" />
-            </div>
-            <div onClick={remove}>
-              <MdRemove className="removeIcon" />
-            </div>
-          </div>
-        </div>
+            <div>{text}</div>
+          </TextContainer>
+          <IconContainer>
+            <MdModeEdit className="editIcon" onClick={onClickEditOn} />
+            <MdRemove className="removeIcon" onClick={onClickRemove} />
+          </IconContainer>
+        </Wrapper>
       )}
     </TodoListItemBlock>
   );
@@ -115,12 +107,12 @@ const TodoListItemBlock = styled.div`
   .editIcon {
     width: 35px;
     height: 35px;
-    color: navy;
+    color: #008c8c;
   }
   .removeIcon {
     width: 40px;
     height: 40px;
-    color: red;
+    color: #ff5675;
     margin-left: 10px;
   }
   .flex {
@@ -138,19 +130,8 @@ const TodoListItemBlock = styled.div`
     flex: 1; //차지할 수 있는 영역 모두 차지
     align-items: center; //중앙 정렬
     display: flex;
-    //체크상태일때 추가될 css
-    &.checked {
-      //체크되었을 때 아이콘 스타일
-      svg {
-        color: grey;
-      }
-      //체크 되었을 때 텍스트 스타일
-      .text {
-        color: grey;
-        text-decoration: line-through;
-      }
-    }
   }
+
   //수정 상태시 나오는 인풋과 수정 버튼
   .editForm {
     display: flex;
@@ -172,4 +153,23 @@ const TodoListItemBlock = styled.div`
   }
 `;
 
+//props로 todo를 받음. checked속성에 따라 text css가 바뀜.
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: ${(props) => (props.todo.checked ? "gray" : "black")};
+  text-decoration: ${(props) => (props.todo.checked ? "line-through" : "none")};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 700px;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export default TodoListItem;

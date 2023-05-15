@@ -1,20 +1,18 @@
 import { MdAdd } from "react-icons/md";
-import React, { useState } from "react";
-//styled component 쓸 때는 무조건 import
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 
+//TodoInsert : todolist의 input과 플러스 버튼으로 추가할 수 있는 부분. todo에 새로운 todo를 추가하여 재렌더링해주는 컴포넌트
 const TodoInsert = ({ todos, setTodos }) => {
   //새로운 text, id의 state를 만듦
   const [text, setText] = useState("");
 
-  //AddItem :
-  //text로 새로운 listitem을 만들어주는 함수
-  //text가 비어있지 않다면 newItem을 만들어 기존의 todos에 새로 추가해줌.
-  const AddItem = (e) => {
+  //onClickAddTodo : 추가버튼으로 todo를 추가하는 함수
+  const onClickAddTodo = (e) => {
     e.preventDefault();
     if (text) {
       const newItem = { text: text, id: Date.now(), checked: false };
-      setTodos(todos.concat(newItem));
+      setTodos([...todos, newItem]);
     }
     setText("");
   };
@@ -32,9 +30,7 @@ const TodoInsert = ({ todos, setTodos }) => {
         placeholder="할 일을 입력하세요"
         onChange={handleChange}
       />
-      <button type="submit" onClick={AddItem}>
-        <MdAdd className="plus" />
-      </button>
+      <MdAdd className="plus" onClick={onClickAddTodo} />
     </TodoInsertBlock>
   );
 };
